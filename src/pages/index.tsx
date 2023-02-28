@@ -1,12 +1,17 @@
-import React from "react"
+import React, { useRef, useEffect } from "react"
 import type { NextPage } from "next"
 import Head from "next/head"
 
 import LongContent from "@/components/LongContent"
+import useIsInViewport from "@/hooks/useIsInViewport"
+import styles from "@/styles/home.module.css"
 
 type PageProps = {}
 
 const HomePage: NextPage<PageProps> = ({}) => {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const isIntersecting = useIsInViewport(containerRef)
+
   return (
     <>
       <Head>
@@ -20,15 +25,19 @@ const HomePage: NextPage<PageProps> = ({}) => {
 
       <main>
         <h1 className="text-3xl font-bold underline text-center my-4">Video</h1>
-        <div className="w-[50%] mx-auto">
-          <video width="100%" height="100%" controls>
-                            
-            <source
-              src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-              type="video/mp4"
-            />
-                        
-          </video>
+        <div ref={containerRef}>
+          <div
+            className={isIntersecting ? "w-[50%] mx-auto" : styles.stickyScreen}
+          >
+            <video width="100%" height="100%" controls>
+                              
+              <source
+                src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                type="video/mp4"
+              />
+                          
+            </video>
+          </div>
         </div>
 
         <LongContent />

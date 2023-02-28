@@ -1,0 +1,25 @@
+.stickyScreen {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  transform: translateY(100%);
+  width: 260px;
+  height: 145px;
+  animation: fade-in-up 0.25s ease forwards;
+}
+
+.container {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
