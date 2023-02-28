@@ -2,6 +2,8 @@ import React from "react"
 import type { NextPage } from "next"
 import Head from "next/head"
 
+import LongContent from "@/components/LongContent"
+
 type PageProps = {}
 
 const HomePage: NextPage<PageProps> = ({}) => {
@@ -17,7 +19,19 @@ const HomePage: NextPage<PageProps> = ({}) => {
       </Head>
 
       <main>
-        <h1 className="text-3xl font-bold underline">Hello world!</h1>
+        <h1 className="text-3xl font-bold underline text-center my-4">Video</h1>
+        <div className="w-[50%] mx-auto">
+          <video width="100%" height="100%" controls>
+                            
+            <source
+              src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+              type="video/mp4"
+            />
+                        
+          </video>
+        </div>
+
+        <LongContent />
       </main>
     </>
   )
