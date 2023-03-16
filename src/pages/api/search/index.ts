@@ -16,7 +16,7 @@ const handleSearch: NextApiHandler<IReturnType> = async (req, res) => {
     current.name.toLowerCase().includes(name?.toLowerCase() || "")
   );
 
-  res.status(200).json(pokemonData);
+  res.status(200).json(pokemonData.slice(0, 10));
 };
 
 export default handleSearch;
