@@ -1,6 +1,7 @@
 import React from "react";
 
 import PokemonsTable from "../PokemonsTable";
+
 interface IProps {
   [x: string]: unknown;
 }
