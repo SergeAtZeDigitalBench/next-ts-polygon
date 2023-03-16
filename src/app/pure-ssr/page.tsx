@@ -1,7 +1,8 @@
 import React from "react";
+
 import { IPokemon } from "@/types";
 import { store, setStartupPokemon } from "@/store";
-import SSRPokemonsTable from "./components/SSRPokemonsTable";
+import SSRPokemonsTable from "@/app/components/SSRPokemonsTable";
 
 const fetchPokemons = async (name?: string) => {
   try {
@@ -19,6 +20,9 @@ const fetchPokemons = async (name?: string) => {
   }
 };
 
+/**
+ * @description pure SSR fetching and rendering
+ */
 const Homepage = async ({}) => {
   const pokemons = await fetchPokemons();
   store.dispatch(setStartupPokemon(pokemons));
