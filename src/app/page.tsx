@@ -1,6 +1,7 @@
 import React from "react";
 
 import { IPokemon } from "@/types";
+import { NEXT_PUBLIC_BASE_API } from "@/constants";
 import { store, setStartupPokemon } from "@/store";
 import AllProviders from "./components/AllProviders";
 import SearchInput from "./components/SearchInput";
@@ -10,8 +11,8 @@ const fetchPokemons = async (name?: string) => {
   try {
     const res = await fetch(
       name
-        ? `http://localhost:3000/api/search?name=${name}`
-        : "http://localhost:3000/api/search"
+        ? `${NEXT_PUBLIC_BASE_API}search?name=${name}`
+        : `${NEXT_PUBLIC_BASE_API}search`
     );
     if (!res.ok) {
       throw new Error("Failed fetch pokemons");
@@ -29,7 +30,8 @@ const Homepage = async ({}) => {
   return (
     <main>
       <h1 className="text-3xl font-bold underline text-center">
-        Search Pokemon
+        Search Pokemon{" "}
+        <small className=" text-xl">Client and server side</small>
       </h1>
       <Preloader pokemons={pokemons} />
       <AllProviders>
