@@ -1,7 +1,10 @@
 import React from "react";
+
 import { IPokemon } from "@/types";
 import { store, setStartupPokemon } from "@/store";
-import SSRPokemonsTable from "./components/SSRPokemonsTable";
+import AllProviders from "./components/AllProviders";
+import SearchInput from "./components/SearchInput";
+import Preloader from "./components/Preloader";
 
 const fetchPokemons = async (name?: string) => {
   try {
@@ -25,8 +28,13 @@ const Homepage = async ({}) => {
 
   return (
     <main>
-      <h1 className="text-3xl font-bold underline">Next.JS v13</h1>
-      <SSRPokemonsTable />
+      <h1 className="text-3xl font-bold underline text-center">
+        Search Pokemon
+      </h1>
+      <Preloader pokemons={pokemons} />
+      <AllProviders>
+        <SearchInput />
+      </AllProviders>
     </main>
   );
 };

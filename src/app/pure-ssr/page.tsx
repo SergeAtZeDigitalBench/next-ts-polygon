@@ -29,7 +29,7 @@ const Homepage = async ({}) => {
 
   return (
     <main>
-      <h1 className="text-3xl font-bold underline">Next.JS v13</h1>
+      <h1 className="text-3xl font-bold underline">Search Pokemon SSR</h1>
       <SSRPokemonsTable />
     </main>
   );
