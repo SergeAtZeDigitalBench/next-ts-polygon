@@ -1,0 +1,36 @@
+.Carousel {
+  overflow: hidden;
+}
+
+.CarouselInner {
+  white-space: nowrap;
+  transition: transform 0.3s;
+}
+
+.CarouselItem {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: white;
+  background-color: green;
+}
+
+.CarouselIndicators {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-top: 15px;
+  min-height: 30px;
+}
+
+.CarouselIndicatorsPageButton {
+  width: 25px;
+  height: 25px;
+}
+
+.CarouselIndicatorsControlButton {
+  width: 50px;
+  height: 25px;
+}

@@ -2,8 +2,7 @@ import React from "react"
 import type { NextPage } from "next"
 import Head from "next/head"
 
-import { cars } from "@/data"
-import Carousel from "@/components/basicCarousel/Carousel"
+import Carousel from "@/components/sliderCarousel/Carousel"
 
 type PageProps = {}
 
@@ -20,7 +19,11 @@ const HomePage: NextPage<PageProps> = ({}) => {
       </Head>
 
       <main>
-        <Carousel list={cars} />
+        <Carousel>
+          <Carousel.Item>Item 1</Carousel.Item>
+          <Carousel.Item>Item 2</Carousel.Item>
+          <Carousel.Item>Item 3</Carousel.Item>
+        </Carousel>
       </main>
     </>
   )
