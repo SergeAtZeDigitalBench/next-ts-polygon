@@ -3,6 +3,10 @@ import type { NextPage } from "next"
 import Head from "next/head"
 
 import Carousel from "@/components/sliderCarousel/Carousel"
+import ArticleSummary from "@/components/ArticleSummary"
+import { cars } from "@/data"
+
+import styles from "../styles/homepage.module.css"
 
 type PageProps = {}
 
@@ -18,14 +22,13 @@ const HomePage: NextPage<PageProps> = ({}) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <Carousel>
-          <Carousel.Item>Item 1</Carousel.Item>
-          <Carousel.Item>Item 2</Carousel.Item>
-          <Carousel.Item>Item 3</Carousel.Item>
-          <Carousel.Item>Item 4</Carousel.Item>
-          <Carousel.Item>Item 5</Carousel.Item>
-          <Carousel.Item>Item 6</Carousel.Item>
+      <main className={styles.Main}>
+        <Carousel itemsPerView={3}>
+          {cars.map((article) => (
+            <Carousel.Item key={article.id}>
+              <ArticleSummary item={article} />
+            </Carousel.Item>
+          ))}
         </Carousel>
       </main>
     </>

@@ -1,27 +1,27 @@
-import React, { useState } from "react"
+import { classnames } from "@/lib"
+import React, { useState, ComponentProps } from "react"
 
 import styles from "./Carousel.module.css"
 
-const generateArrayAscending = (amount: number) =>
-  Object.keys(Array(amount + 1).fill(0))
-    .slice(1)
-    .map((strNumeric) => ({
-      id: strNumeric,
-      index: parseInt(strNumeric) - 1,
-    }))
-
-interface ICarouselItemProps {
-  children: React.ReactNode
+interface ICarouselItemProps extends ComponentProps<"div"> {
   width?: number | string
 }
 
-const CarouselItem = ({ children, width = "100%" }: ICarouselItemProps) => {
-  return (
-    <div className={styles.CarouselItem} style={{ width }}>
-      {children}
-    </div>
-  )
-}
+const CarouselItem = ({
+  children,
+  width = "100%",
+  style,
+  className,
+  ...restDivProps
+}: ICarouselItemProps) => (
+  <div
+    className={classnames(styles.CarouselItem, className)}
+    style={{ width, ...style }}
+    {...restDivProps}
+  >
+    {children}
+  </div>
+)
 
 interface IProps {
   children: React.ReactElement[]
@@ -29,26 +29,30 @@ interface IProps {
 }
 
 const Carousel = ({ children, itemsPerView = 1 }: IProps): JSX.Element => {
+  if (itemsPerView < 1) {
+    itemsPerView = 1
+  }
+
   const [activeIndex, setActiveIndex] = useState<number>(0)
   const childrenCount = React.Children.count(children)
   const itemWidth = 100 / itemsPerView
-  const isLastInView = activeIndex + itemsPerView - 1 === childrenCount
-
-  const updateNewIndex = (newIndex: number) => {
-    if (newIndex < 0) {
-      return 0
-    } else if (newIndex >= childrenCount) {
-      return childrenCount - 1
-    }
-    return newIndex
-  }
 
   const handlePrev = () => {
-    setActiveIndex((current) => updateNewIndex(current - 1))
+    setActiveIndex((current) => {
+      const next = current - 1
+      if (next < 0) return 0
+
+      return next
+    })
   }
 
   const handleNext = () => {
-    setActiveIndex((current) => updateNewIndex(current + 1))
+    setActiveIndex((current) => {
+      const isLastInView = current + itemsPerView === childrenCount
+      if (isLastInView) return current
+
+      return current + 1
+    })
   }
 
   return (
@@ -68,26 +72,21 @@ const Carousel = ({ children, itemsPerView = 1 }: IProps): JSX.Element => {
       <div className={styles.CarouselIndicators}>
         <button
           onClick={handlePrev}
-          className={styles.CarouselIndicatorsControlButton}
+          className={classnames(
+            styles.CarouselIndicatorsControlButton,
+            styles.Prev
+          )}
           disabled={activeIndex === 0}
         >
           prev
         </button>
-        {generateArrayAscending(childrenCount).map(({ id, index }) => (
-          <button
-            key={id}
-            onClick={() => setActiveIndex(updateNewIndex(index))}
-            disabled={activeIndex === index}
-            className={styles.CarouselIndicatorsPageButton}
-          >
-            {id}
-          </button>
-        ))}
         <button
           onClick={handleNext}
-          className={styles.CarouselIndicatorsControlButton}
-          //   disabled={activeIndex === childrenCount - 1}
-          disabled={isLastInView}
+          className={classnames(
+            styles.CarouselIndicatorsControlButton,
+            styles.Next
+          )}
+          disabled={activeIndex + itemsPerView === childrenCount}
         >
           next
         </button>

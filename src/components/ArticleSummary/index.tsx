@@ -3,27 +3,31 @@ import Image from "next/image"
 
 import { ISummaryItem } from "@/types"
 import { classnames } from "@/lib"
-import styles from "./ListItem.module.css"
+import styles from "./ArticleSummary.module.css"
 
 interface IProps extends Omit<ComponentProps<"div">, "children"> {
   item: ISummaryItem
 }
 
-const ListItem = ({
+const ArticleSummary = ({
   item,
   className,
   ...restDivProps
 }: IProps): JSX.Element => {
   const { title, description, image } = item
+
   return (
-    <div className={classnames(styles.ListItem, className)} {...restDivProps}>
-      <div>
+    <div
+      className={classnames(styles.ArticleSummary, className)}
+      {...restDivProps}
+    >
+      <div className={styles.ArticleSummaryImageBox}>
         <Image
           src={image.url}
           alt={title}
           width={image.height}
           height={image.width}
-          className={styles.ListItemImage}
+          className={styles.ArticleSummaryImage}
         />
       </div>
       <h3>{title}</h3>
@@ -32,4 +36,4 @@ const ListItem = ({
   )
 }
 
-export default ListItem
+export default ArticleSummary
