@@ -23,6 +23,9 @@ const HomePage: NextPage<PageProps> = ({}) => {
           <Carousel.Item>Item 1</Carousel.Item>
           <Carousel.Item>Item 2</Carousel.Item>
           <Carousel.Item>Item 3</Carousel.Item>
+          <Carousel.Item>Item 4</Carousel.Item>
+          <Carousel.Item>Item 5</Carousel.Item>
+          <Carousel.Item>Item 6</Carousel.Item>
         </Carousel>
       </main>
     </>

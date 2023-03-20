@@ -25,11 +25,14 @@ const CarouselItem = ({ children, width = "100%" }: ICarouselItemProps) => {
 
 interface IProps {
   children: React.ReactElement[]
+  itemsPerView?: number
 }
 
-const Carousel = ({ children }: IProps): JSX.Element => {
+const Carousel = ({ children, itemsPerView = 1 }: IProps): JSX.Element => {
   const [activeIndex, setActiveIndex] = useState<number>(0)
   const childrenCount = React.Children.count(children)
+  const itemWidth = 100 / itemsPerView
+  const isLastInView = activeIndex + itemsPerView - 1 === childrenCount
 
   const updateNewIndex = (newIndex: number) => {
     if (newIndex < 0) {
@@ -52,10 +55,14 @@ const Carousel = ({ children }: IProps): JSX.Element => {
     <div className={styles.Carousel}>
       <div
         className={styles.CarouselInner}
-        style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+        style={{
+          transform: `translateX(-${activeIndex * itemWidth}%)`,
+        }}
       >
         {React.Children.map(children, (currentChild: React.ReactElement) => {
-          return React.cloneElement(currentChild, { width: `100%` })
+          return React.cloneElement(currentChild, {
+            width: `${itemWidth}%`,
+          })
         })}
       </div>
       <div className={styles.CarouselIndicators}>
@@ -79,7 +86,8 @@ const Carousel = ({ children }: IProps): JSX.Element => {
         <button
           onClick={handleNext}
           className={styles.CarouselIndicatorsControlButton}
-          disabled={activeIndex === childrenCount - 1}
+          //   disabled={activeIndex === childrenCount - 1}
+          disabled={isLastInView}
         >
           next
         </button>
