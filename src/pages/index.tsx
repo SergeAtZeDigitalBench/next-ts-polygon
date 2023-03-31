@@ -1,10 +1,33 @@
 import React from "react"
+import { GetStaticProps } from "next"
 import type { NextPage } from "next"
 import Head from "next/head"
 
-type PageProps = {}
+import MockUI from "@/components/MockUI"
+import { SubscriptionsProvider } from "@/providers/SubscriptionsContext"
+import { fetchMockNewsletters } from "@/constants"
+import { INewsletterSubscriptions } from "@/types"
 
-const HomePage: NextPage<PageProps> = ({}) => {
+type PageProps = {
+  serverSideSubscriptions: Partial<INewsletterSubscriptions>
+}
+
+export const getStaticProps: GetStaticProps<PageProps> = async () => {
+  const newsletters = await fetchMockNewsletters()
+
+  const serverSideSubscriptions: Partial<INewsletterSubscriptions> = {
+    newsletters,
+  }
+
+  return {
+    props: {
+      serverSideSubscriptions,
+    },
+    revalidate: 900,
+  }
+}
+
+const HomePage: NextPage<PageProps> = ({ serverSideSubscriptions }) => {
   return (
     <>
       <Head>
@@ -17,7 +40,10 @@ const HomePage: NextPage<PageProps> = ({}) => {
       </Head>
 
       <main className="flex flex-col h-screen justify-center items-center">
-        <h1 className="text-3xl font-bold underline">Hello Tailwind css!</h1>
+        <h1 className="text-3xl font-bold underline">Context state</h1>
+        <SubscriptionsProvider initialServerState={serverSideSubscriptions}>
+          <MockUI />
+        </SubscriptionsProvider>
       </main>
     </>
   )
