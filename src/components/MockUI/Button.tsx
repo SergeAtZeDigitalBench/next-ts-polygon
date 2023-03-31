@@ -14,7 +14,11 @@ const Button = ({
   className,
   ...restButtonProps
 }: IProps): JSX.Element => (
-  <button className={classnames(styledButton, className)} {...restButtonProps}>
+  <button
+    role="button"
+    className={classnames(styledButton, className)}
+    {...restButtonProps}
+  >
     <span>{children}</span>
   </button>
 )

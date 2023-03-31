@@ -1,6 +1,7 @@
 import React from "react"
 
 import { useSubscriptions } from "@/providers/SubscriptionsContext"
+import { DATA_TEST_ID } from "@/constants"
 
 const SubmitForm = (): JSX.Element => {
   const [numberOfSubscriptions] = useSubscriptions<number>(
@@ -8,11 +9,12 @@ const SubmitForm = (): JSX.Element => {
   )
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div
+      className="grid grid-cols-2 gap-4"
+      data-testid={DATA_TEST_ID.SUBMIT_FORM}
+    >
       <div>
-        <h4>
-          You have <span>{numberOfSubscriptions}</span> subscriptions
-        </h4>
+        <h4>{`You have ${numberOfSubscriptions} subscriptions`}</h4>
       </div>
       <div className="flex gap-2 justify-end">
         <input type="text" />

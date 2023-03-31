@@ -1,6 +1,7 @@
 import React, { useCallback, memo } from "react"
 
 import { useSubscriptions } from "@/providers/SubscriptionsContext"
+import { DATA_TEST_ID } from "@/constants"
 import { INewsletter } from "@/types"
 import Button from "./Button"
 
@@ -48,7 +49,10 @@ const NewslettersList = (): JSX.Element => {
   }, [])
 
   return (
-    <div className="flex flex-col gap-2">
+    <div
+      className="flex flex-col gap-2"
+      data-testid={DATA_TEST_ID.NEWSLETTERS_LIST}
+    >
       {state.newsletters.map((current) => (
         <NewsletterInfoMemoized
           key={current.id}

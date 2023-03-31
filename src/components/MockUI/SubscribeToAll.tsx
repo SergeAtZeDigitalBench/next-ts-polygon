@@ -6,6 +6,7 @@ import {
   uniq,
   removeManyFromArray,
 } from "@/providers/SubscriptionsContext"
+import { DATA_TEST_ID } from "@/constants"
 import Button from "./Button"
 
 const SubscribeToAll = (): JSX.Element => {
@@ -31,7 +32,10 @@ const SubscribeToAll = (): JSX.Element => {
   }
 
   return (
-    <div className="grid grid-cols-[50%_123px_1fr] border-b-2 border-gray-800 pb-2">
+    <div
+      className="grid grid-cols-[50%_123px_1fr] border-b-2 border-gray-800 pb-2"
+      data-testid={DATA_TEST_ID.SUBSCRIBE_TO_ALL}
+    >
       <h3 className="tex-2xl font-bold">
         Which BBC Newsletters would you like to subscribe to?
       </h3>
@@ -42,7 +46,11 @@ const SubscribeToAll = (): JSX.Element => {
             ? "Unsubscribe from all Newsleters"
             : "Subscribe to all Newsleters"}
         </p>
-        <Button className="mr-4" onClick={toggleSelectAll}>
+        <Button
+          className="mr-4"
+          onClick={toggleSelectAll}
+          data-testid={DATA_TEST_ID.SUBSCRIBE_TO_ALL_BUTTON}
+        >
           {areAllSelected ? "-" : "+"}
         </Button>
       </div>
