@@ -17,7 +17,7 @@ export default function RootLayout({ children }: Props) {
         <header>
           <Navigation />
         </header>
-        <main>{children}</main>
+        <main className="max-w-screen-xl mx-auto">{children}</main>
       </body>
     </html>
   );
