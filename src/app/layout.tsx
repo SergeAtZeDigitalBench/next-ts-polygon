@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Navbar from "@/app/components/Navbar";
 
 export const metadata: Metadata = {
   title: "Next.js Image Gallery",
@@ -19,6 +20,9 @@ export default function RootLayout({ children }: Props) {
       */}
       <head />
       <body>
+        <header className="bg-black sticky top-0 z-10">
+          <Navbar />
+        </header>
         <main className="max-w-6xl mx-auto">{children}</main>
       </body>
     </html>
