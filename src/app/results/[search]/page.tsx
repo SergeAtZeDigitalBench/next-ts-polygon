@@ -1,14 +1,25 @@
 import React from "react";
+import type { Metadata } from "next";
 
+import Gallery from "@/app/components/Gallery";
 import { IPageProps } from "@/types";
+
+export const generateMetadata = ({
+  params,
+}: IPageProps<{ search: string }>): Metadata => {
+  return {
+    title: `Results for ${params.search}`,
+  };
+};
 
 const ResultsPage = ({
   params,
 }: IPageProps<{ search: string }>): JSX.Element => {
   return (
-    <div>
-      <h1>Results for: &rsquo;{params.search}&rsquo;</h1>
-    </div>
+    <>
+      {/* @ts-ignore Server component */}
+      <Gallery topic={params.search} />
+    </>
   );
 };
 

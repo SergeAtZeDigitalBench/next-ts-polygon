@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/app/components/Navbar";
 
+/**
+ * @description revalidate static data fetch at each 1 hour freq.
+ */
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Next.js Image Gallery",
   description: "Image gallery using pexel api and Next.js",

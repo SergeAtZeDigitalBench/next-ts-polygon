@@ -6,10 +6,14 @@ import { fetchImages } from "@/lib/fetchImages";
 import { ImagesResults } from "@/models/images";
 import { env } from "@/lib/env";
 
-interface IProps {}
+interface IProps {
+  topic?: string;
+}
 
-const Gallery = async ({}: IProps) => {
-  const url = env.PEXELS_API_URL + "/curated";
+const Gallery = async ({ topic }: IProps) => {
+  const endpoint = !!topic ? `/search?query=${topic}` : "/curated";
+  const url = env.PEXELS_API_URL + endpoint;
+
   const images: ImagesResults | undefined = await fetchImages(url);
 
   if (!images) {
