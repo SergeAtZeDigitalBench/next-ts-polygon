@@ -16,7 +16,7 @@ const ImgContainer = ({ photo }: IProps): JSX.Element => {
         src={src.large}
         alt={alt}
         fill
-        placeholder="blur"
+        placeholder={blurredDataUrl ? "blur" : "empty"}
         blurDataURL={blurredDataUrl}
         sizes="(min-width: 1280px) 278px, (min-width: 1040px) calc(12.73vw + 118px), (min-width: 800px) 33.18vw, (min-width: 540px) 50vw, calc(100vw - 16px)"
         className="object-cover hover:opacity-75"

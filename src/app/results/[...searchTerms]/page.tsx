@@ -6,19 +6,23 @@ import { IPageProps } from "@/types";
 
 export const generateMetadata = ({
   params,
-}: IPageProps<{ search: string }>): Metadata => {
+}: IPageProps<{ searchTerms: [string, string | undefined] }>): Metadata => {
+  const [topic, page] = params.searchTerms;
+
   return {
-    title: `Results for ${params.search}`,
+    title: `Results for ${topic} - Page ${page || 1}`,
   };
 };
 
 const ResultsPage = ({
   params,
-}: IPageProps<{ search: string }>): JSX.Element => {
+}: IPageProps<{ searchTerms: [string, string | undefined] }>): JSX.Element => {
+  const [topic, page] = params.searchTerms;
+
   return (
     <>
       {/* @ts-ignore Server component */}
-      <Gallery topic={params.search} />
+      <Gallery topic={topic} page={page || "1"} />
     </>
   );
 };
