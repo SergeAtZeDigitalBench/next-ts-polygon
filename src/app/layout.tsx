@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-
-import './globals.css';
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Next.js Image Gallery",
-  description: "Image gallery using pexel api and Next.js"
-}
+  description: "Image gallery using pexel api and Next.js",
+};
 
 type Props = {
   children: React.ReactNode;
@@ -20,9 +19,7 @@ export default function RootLayout({ children }: Props) {
       */}
       <head />
       <body>
-        <main className="max-w-6xl mx-auto">
-          {children}
-        </main>
+        <main className="max-w-6xl mx-auto">{children}</main>
       </body>
     </html>
   );

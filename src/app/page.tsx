@@ -1,15 +1,14 @@
-import React from 'react';
-import type { NextPage } from 'next';
+import React from "react";
 
-interface IPageProps {
-  [x: string]: any;
-}
+import { IPageProps } from "@/types";
 
-const Homepage: NextPage<IPageProps> = ({}) => {
+const Homepage = async ({ params, searchParams }: IPageProps) => {
   return (
-    <main>
-      <h1 className="text-3xl font-bold underline">Next.JS v13</h1>
-    </main>
+    <>
+      <h1 className="text-3xl font-bold underline text-center">
+        NEXT V13 POLYGON
+      </h1>
+    </>
   );
 };
 
