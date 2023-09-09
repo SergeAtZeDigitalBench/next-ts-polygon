@@ -1,13 +1,13 @@
 import React from "react";
 
+import Gallery from "@/app/components/Gallery";
 import { IPageProps } from "@/types";
 
 const Homepage = async ({ params, searchParams }: IPageProps) => {
   return (
     <>
-      <h1 className="text-3xl font-bold underline text-center">
-        NEXT V13 POLYGON
-      </h1>
+      {/* @ts-ignore Server component */}
+      <Gallery />
     </>
   );
 };
