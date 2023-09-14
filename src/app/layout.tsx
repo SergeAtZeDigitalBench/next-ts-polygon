@@ -1,5 +1,6 @@
 import "./globals.css";
 import Navigation from "@/app/components/Navigation";
+import { CounterContextProvider } from "@/context/CounterContext";
 
 type Props = {
   children: React.ReactNode;
@@ -14,10 +15,12 @@ export default function RootLayout({ children }: Props) {
       */}
       <head />
       <body>
+        <CounterContextProvider>
         <header>
           <Navigation />
         </header>
         <main className="max-w-screen-xl mx-auto">{children}</main>
+        </CounterContextProvider>
       </body>
     </html>
   );
