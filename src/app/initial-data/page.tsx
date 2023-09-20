@@ -1,8 +1,8 @@
-import UsersList from "@/components/UsersList";
+import UsersList from "./UsersList";
 import { IUser } from "@/types";
 
 async function getUsers() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  const res = await fetch("http://localhost:3000/api/users");
   const users = (await res.json()) as IUser[];
   return users;
 }
