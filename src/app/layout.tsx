@@ -1,5 +1,6 @@
 import "./globals.css";
 import Navigation from "@/components/Navigation";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
 type Props = {
   children: React.ReactNode;
@@ -14,10 +15,12 @@ export default function RootLayout({ children }: Props) {
       */}
       <head />
       <body>
-        <header>
-          <Navigation />
-        </header>
-        <main className="max-w-screen-xl mx-auto">{children}</main>
+        <ReactQueryProvider>
+          <header>
+            <Navigation />
+          </header>
+          <main className="max-w-screen-xl mx-auto">{children}</main>
+        </ReactQueryProvider>
       </body>
     </html>
   );

@@ -6,6 +6,11 @@ export interface IPageProps<
   searchParams: Q;
 }
 
+export interface IUser {
+  id: number;
+  name: string;
+  email: string;
+}
 export interface IPost {
   userId: number;
   id: number;
