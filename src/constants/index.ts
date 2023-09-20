@@ -15,4 +15,5 @@ export const navLinks = [
     href: "/hydration",
     name: "Prefetching Using Hydration --- Good for SEO",
   },
+  { id: 5, href: "/posts", name: "posts Hydration" },
 ];

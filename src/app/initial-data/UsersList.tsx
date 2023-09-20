@@ -2,12 +2,12 @@
 
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import Image from "next/image";
 
+import UserCard from "@/components/UserCard";
 import { IUser } from "@/types";
 
 async function getUsers() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  const res = await fetch("http://localhost:3000/api/users");
   const users = (await res.json()) as IUser[];
   return users;
 }
@@ -43,19 +43,7 @@ const UsersList = ({ users }: { users: IUser[] }) => {
           }}
         >
           {data.map((user) => (
-            <div
-              key={user.id}
-              style={{ border: "1px solid #ccc", textAlign: "center" }}
-            >
-              <Image
-                src={`https://robohash.org/${user.id}?set=set2&size=180x180`}
-                alt={user.name}
-                width={180}
-                height={180}
-                className="mx-auto"
-              />
-              <h3>{user.name}</h3>
-            </div>
+            <UserCard key={user.id} user={user} />
           ))}
         </div>
       }
