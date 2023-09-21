@@ -1,5 +1,5 @@
 import "./globals.css";
-import Navigation from "@/app/components/Navigation";
+import Navigation from "@/components/Navigation";
 
 type Props = {
   children: React.ReactNode;
