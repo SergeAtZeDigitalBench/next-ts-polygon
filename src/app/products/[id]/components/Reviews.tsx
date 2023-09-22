@@ -1,16 +1,18 @@
 "use client";
+
 import { useState } from "react";
 
+import { useReviews } from "@/providers/ReviewsContext";
 import { Review } from "@/types";
 
 interface Props {
-  reviews: Review[];
   addReviewAction: (text: string, rating: number) => Promise<Review[]>;
 }
 
-const Reviews = ({ reviews, addReviewAction }: Props) => {
+const Reviews = ({ addReviewAction }: Props) => {
   const [reviewText, setReviewText] = useState("");
   const [reviewRating, setReviewRating] = useState(5);
+  const [reviews, setReviews] = useReviews();
 
   return (
     <>
@@ -27,7 +29,11 @@ const Reviews = ({ reviews, addReviewAction }: Props) => {
       <form
         onSubmit={async (evt) => {
           evt.preventDefault();
-          await addReviewAction(reviewText, reviewRating);
+          const updatedReviews = await addReviewAction(
+            reviewText,
+            reviewRating
+          );
+          setReviews(updatedReviews);
           setReviewText("");
           setReviewRating(5);
         }}

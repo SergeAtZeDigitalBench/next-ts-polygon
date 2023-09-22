@@ -14,8 +14,8 @@ const AddToCart = ({ addToCartAction }: Props) => {
     <button
       className="mt-6 px-8 py-2 text-lg font-bold text-white bg-blue-800 rounded-lg"
       onClick={async () => {
-        const cart = await addToCartAction();
-        setCart(cart);
+        const updatedCart = await addToCartAction();
+        setCart(updatedCart);
       }}
     >
       Add To Cart

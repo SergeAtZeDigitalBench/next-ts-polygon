@@ -1,12 +1,10 @@
 "use client";
 
-import { Review } from "@/types";
+import { useReviews } from "@/providers/ReviewsContext";
 
-interface Props {
-  reviews: Review[];
-}
+const AverageRating = () => {
+  const [reviews] = useReviews();
 
-const AverageRating = ({ reviews }: Props) => {
   return (
     <>
       {reviews && reviews?.length && (
