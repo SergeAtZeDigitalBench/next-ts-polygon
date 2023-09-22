@@ -2,16 +2,16 @@
 import { useState } from "react";
 import Link from "next/link";
 
-import CartPopup from "./CartPopup";
+import { useCart } from "@/providers/CartContext";
 import { type Cart } from "@/types";
+import CartPopup from "./CartPopup";
 
-export default function Header({
-  cart,
-  clearCartAction,
-}: {
-  cart: Cart;
+interface Props {
   clearCartAction: () => Promise<Cart>;
-}) {
+}
+
+const Header = ({ clearCartAction }: Props) => {
+  const [cart] = useCart();
   const [showCart, setShowCart] = useState(false);
 
   return (
@@ -30,10 +30,10 @@ export default function Header({
         <span className="text-xl font-bold leading-10 text-gray-100">
           {cart.products.length}
         </span>
-        {showCart && (
-          <CartPopup cart={cart} clearCartAction={clearCartAction} />
-        )}
+        {showCart && <CartPopup clearCartAction={clearCartAction} />}
       </div>
     </header>
   );
-}
+};
+
+export default Header;

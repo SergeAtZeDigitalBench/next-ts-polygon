@@ -2,9 +2,10 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
+import { CartProvider } from "@/providers/CartContext";
 import Header from "@/components/Header";
-
-import { getCart, clearCart } from "@/lib";
+import { clearCart, getCart } from "@/lib";
+import { ParentProps } from "@/types";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,11 +16,7 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const RootLayout = async ({ children }: ParentProps) => {
   const cart = await getCart();
 
   const clearCartAction = async () => {
@@ -30,9 +27,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header cart={cart} clearCartAction={clearCartAction} />
-        <main className="mx-auto max-w-3xl">{children}</main>
+        <CartProvider cart={cart}>
+          <Header clearCartAction={clearCartAction} />
+          <main className="mx-auto max-w-3xl">{children}</main>
+        </CartProvider>
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

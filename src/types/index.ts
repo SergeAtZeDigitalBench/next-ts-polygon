@@ -1,4 +1,6 @@
-export interface IPageProps<
+import { ReactNode } from "react";
+
+export interface PageProps<
   P = Record<string, string>,
   Q = Record<string, string>
 > {
@@ -27,4 +29,8 @@ export interface Cart {
     image: string;
     price: number;
   }[];
+}
+
+export interface ParentProps {
+  children: ReactNode;
 }

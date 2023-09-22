@@ -1,18 +1,14 @@
 import Image from "next/image";
 
-const ProductCard = ({
-  name,
-  description,
-  price,
-  image,
-  small,
-}: {
+interface Props {
   name?: string;
   image?: string | null;
   description?: string;
   price?: number;
   small?: boolean;
-}) => (
+}
+
+const ProductCard = ({ name, description, price, image, small }: Props) => (
   <div className="p-2 flex flex-col">
     <Image
       className={`aspect-[2/2] rounded-md object-cover`}

@@ -1,17 +1,26 @@
 "use client";
+
+import { useCart } from "@/providers/CartContext";
 import { type Cart } from "@/types";
 
-export default function AddToCart({
-  addToCartAction,
-}: {
+interface Props {
   addToCartAction: () => Promise<Cart>;
-}) {
+}
+
+const AddToCart = ({ addToCartAction }: Props) => {
+  const [_, setCart] = useCart();
+
   return (
     <button
       className="mt-6 px-8 py-2 text-lg font-bold text-white bg-blue-800 rounded-lg"
-      onClick={async () => {}}
+      onClick={async () => {
+        const cart = await addToCartAction();
+        setCart(cart);
+      }}
     >
       Add To Cart
     </button>
   );
-}
+};
+
+export default AddToCart;

@@ -2,7 +2,11 @@
 
 import { Review } from "@/types";
 
-export default function AverageRating({ reviews }: { reviews: Review[] }) {
+interface Props {
+  reviews: Review[];
+}
+
+const AverageRating = ({ reviews }: Props) => {
   return (
     <>
       {reviews && reviews?.length && (
@@ -15,4 +19,6 @@ export default function AverageRating({ reviews }: { reviews: Review[] }) {
       )}
     </>
   );
-}
+};
+
+export default AverageRating;

@@ -3,8 +3,9 @@ import Link from "next/link";
 import { getProducts } from "@/lib";
 import ProductCard from "@/components/ProductCard";
 
-export default async function Home() {
+const Home = async () => {
   const products = await getProducts();
+
   return (
     <div className="flex flex-wrap gap-2">
       <ul role="list" className="flex flex-row flex-wrap m-2">
@@ -18,4 +19,6 @@ export default async function Home() {
       </ul>
     </div>
   );
-}
+};
+
+export default Home;

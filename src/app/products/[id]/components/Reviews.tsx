@@ -3,13 +3,12 @@ import { useState } from "react";
 
 import { Review } from "@/types";
 
-export default function Reviews({
-  reviews,
-  addReviewAction,
-}: {
+interface Props {
   reviews: Review[];
   addReviewAction: (text: string, rating: number) => Promise<Review[]>;
-}) {
+}
+
+const Reviews = ({ reviews, addReviewAction }: Props) => {
   const [reviewText, setReviewText] = useState("");
   const [reviewRating, setReviewRating] = useState(5);
 
@@ -64,4 +63,6 @@ export default function Reviews({
       </form>
     </>
   );
-}
+};
+
+export default Reviews;

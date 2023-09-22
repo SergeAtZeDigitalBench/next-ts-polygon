@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 
 import { getProductById, getProducts, addToCart, addReview } from "@/lib";
+import { PageProps } from "@/types";
 import AddToCart from "@/components/AddToCart";
 import ProductCard from "@/components/ProductCard";
 import AverageRating from "./components/AverageRating";
@@ -10,11 +11,7 @@ import Reviews from "./components/Reviews";
 
 export const dynamic = "force-dynamic";
 
-export default async function ProductDetail({
-  params: { id },
-}: {
-  params: { id: string };
-}) {
+const ProductDetail = async ({ params: { id } }: PageProps<{ id: string }>) => {
   const product = await getProductById(+id);
   const products = await getProducts();
 
@@ -80,4 +77,6 @@ export default async function ProductDetail({
       </div>
     </div>
   );
-}
+};
+
+export default ProductDetail;
