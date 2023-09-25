@@ -1,7 +1,38 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { signIn, signOut, useSession } from "next-auth/react";
 
-import { navLinks } from "@/constants";
+const AuthButton = () => {
+  const { data: session } = useSession();
+
+  if (session) {
+    return (
+      <>
+        {session.user?.name} <br />
+        <button
+          onClick={() => signOut()}
+          className="px-2 py-1 rounded bg-red-500 hover:bg-red-600"
+        >
+          sign out
+        </button>
+      </>
+    );
+  }
+
+  return (
+    <>
+      not signed in <br />
+      <button
+        onClick={() => signIn()}
+        className="px-2 py-1 rounded bg-green-500 hover:bg-green-600"
+      >
+        sign in
+      </button>
+    </>
+  );
+};
 
 interface IProps {
   [x: string]: unknown;
@@ -9,12 +40,8 @@ interface IProps {
 
 const Navigation = ({}: IProps): JSX.Element => {
   return (
-    <nav className="flex gap-2 justify-center py-4">
-      {navLinks.map(({ id, href, name }) => (
-        <Link key={id} href={href} className="px-4 py-2">
-          {name}
-        </Link>
-      ))}
+    <nav className="flex gap-2 justify-end items-center py-4 px-2">
+      <AuthButton />
     </nav>
   );
 };
