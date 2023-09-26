@@ -2,25 +2,12 @@ import { revalidatePath } from "next/cache";
 
 import { IPageProps, ITodo } from "@/types";
 import { readDb, writeDb } from "@/lib";
+import { createTodoAction, deleteTodoAction } from "@/lib/serverActions";
 import AddForm from "@/components/AddForm";
 import DeleteForm from "@/components/DeleteForm";
 
 const Homepage = async ({ params, searchParams }: IPageProps) => {
   const [todos, err] = await readDb<ITodo[]>("todos");
-
-  const createTodoAction = async (data: FormData) => {
-    "use server";
-
-    const text = data.get("text");
-    const [currentTodos] = await readDb<ITodo[]>("todos");
-    if (!text || !currentTodos) {
-      return;
-    }
-
-    const newTodos = [...currentTodos, { id: Date.now().toString(), text }];
-    await writeDb("todos", newTodos);
-    revalidatePath("/");
-  };
 
   return (
     <>
@@ -28,9 +15,9 @@ const Homepage = async ({ params, searchParams }: IPageProps) => {
         NEXT V13 POLYGON
       </h1>
       <AddForm formAction={createTodoAction} />
-      <ul className="min-w-[320px]">
+      <ul className="w-full flex flex-wrap gap-2 justify-center">
         {err && (
-          <li className="text-red-500 font-semibold text-center">
+          <li className="text-red-500 font-semibold text-center w-full">
             Oups, an error: {err}
           </li>
         )}
@@ -38,10 +25,13 @@ const Homepage = async ({ params, searchParams }: IPageProps) => {
           todos.map(({ id, text }) => (
             <li
               key={id}
-              className="flex flex-col gap-2 items-stretch justify-center border-2 my-4 p-2 rounded-md border-green-600"
+              className="flex gap-2 items-center justify-between border-2 my-4 p-2 bg-slate-300 rounded-md w-[320px]"
             >
               <span> {text}</span>
-              <DeleteForm id={id} todo={text} />
+              <DeleteForm
+                todo={{ id, text }}
+                deleteTodoAction={deleteTodoAction}
+              />
             </li>
           ))}
       </ul>
