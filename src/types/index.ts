@@ -10,3 +10,8 @@ export interface ITodo {
   id: string;
   text: string;
 }
+
+export interface IServerActionResponse {
+  error?: string;
+  message?: string;
+}

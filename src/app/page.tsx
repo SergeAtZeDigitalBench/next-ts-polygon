@@ -14,7 +14,7 @@ const Homepage = async ({ params, searchParams }: IPageProps) => {
       <h1 className="text-3xl font-bold underline text-center mb-12">
         NEXT V13 POLYGON
       </h1>
-      <AddForm formAction={createTodoAction} />
+      <AddForm createTodoAction={createTodoAction} />
       <ul className="w-full flex flex-wrap gap-2 justify-center">
         {err && (
           <li className="text-red-500 font-semibold text-center w-full">

@@ -40,7 +40,7 @@ export const readDb = async <D = any>(
     const msg =
       error instanceof Error
         ? error.message
-        : `Faled to read file: '${fileName}'`;
+        : `Failed to read file: '${fileName}'`;
     return [null, msg];
   }
 };
@@ -60,7 +60,7 @@ export const writeDb = async <D = any>(
     const msg =
       error instanceof Error
         ? error.message
-        : `Faled to write file: '${fileName}'`;
+        : `Failed to write file: '${fileName}'`;
     return [null, msg];
   }
 };

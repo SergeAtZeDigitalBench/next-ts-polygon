@@ -1,12 +1,15 @@
 "use client";
 
-import React from "react";
+import { useFormState } from "@/lib/hooks/useFormState";
+import { IServerActionResponse } from "@/types";
 
 interface IProps {
-  formAction: (data: FormData) => Promise<void>;
+  createTodoAction: (data: FormData) => Promise<IServerActionResponse>;
 }
 
-const AddForm = ({ formAction }: IProps): JSX.Element => {
+const AddForm = ({ createTodoAction }: IProps): JSX.Element => {
+  const [state, formAction] = useFormState({ serverAction: createTodoAction });
+
   return (
     <form
       action={formAction as any}
@@ -17,11 +20,21 @@ const AddForm = ({ formAction }: IProps): JSX.Element => {
         name="text"
         id="text"
         placeholder="Enter task"
+        required
         className="px-4 py-2 border border-slate-600 rounded-md"
       />
-      <button className="w-full bg-black text-white rounded-md px-4 py-2 text-center">
+      <button
+        type="submit"
+        are-disabled={!!state.pending}
+        className="w-full bg-black text-white rounded-md px-4 py-2 text-center"
+      >
         ADD
       </button>
+      {(state.message || state.error) && (
+        <p aria-live="polite" className="sr-only" role="status">
+          {state.message || state.error}
+        </p>
+      )}
     </form>
   );
 };
