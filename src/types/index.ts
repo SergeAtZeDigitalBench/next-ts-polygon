@@ -5,3 +5,8 @@ export interface IPageProps<
   params: P;
   searchParams: Q;
 }
+
+export interface ITodo {
+  id: string;
+  text: string;
+}

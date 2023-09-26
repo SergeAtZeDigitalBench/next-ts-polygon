@@ -17,7 +17,9 @@ export default function RootLayout({ children }: Props) {
         <header>
           <Navigation />
         </header>
-        <main className="max-w-screen-xl mx-auto">{children}</main>
+        <main className="max-w-screen-xl mx-auto h-[90vh] flex flex-col justify-center items-center">
+          {children}
+        </main>
       </body>
     </html>
   );
