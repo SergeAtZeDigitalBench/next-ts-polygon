@@ -20,7 +20,7 @@ const DeleteForm = ({
       <input type="hidden" name="text" value={text} />
       <button
         type="submit"
-        are-disabled={!!state.pending}
+        area-disabled={state.pending ? true : undefined}
         className=" bg-black text-white rounded-md px-4 py-2"
       >
         DELETE

@@ -25,7 +25,7 @@ const AddForm = ({ createTodoAction }: IProps): JSX.Element => {
       />
       <button
         type="submit"
-        are-disabled={!!state.pending}
+        area-disabled={state.pending ? true : undefined}
         className="w-full bg-black text-white rounded-md px-4 py-2 text-center"
       >
         ADD
