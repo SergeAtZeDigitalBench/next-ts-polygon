@@ -1,12 +1,11 @@
 "use server";
 
-import { redirect } from "next/navigation";
-
+import { IServerActionResponse } from "@/types";
 import { addNewUser, areCredentialsValid } from "./api";
 
 export const registerUserAction = async (
   formData: FormData
-): Promise<undefined | string> => {
+): Promise<IServerActionResponse> => {
   try {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
@@ -17,12 +16,10 @@ export const registerUserAction = async (
 
     await addNewUser({ email, password });
 
-    redirect("/login");
-  } catch (error) {
-    const msg =
-      error instanceof Error
-        ? error.message || error.name
-        : "Registration failed";
-    return msg;
+    return { message: "ok" };
+  } catch (err) {
+    const error =
+      err instanceof Error ? err.message || err.name : "Registration failed";
+    return { error };
   }
 };

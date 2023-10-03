@@ -24,3 +24,8 @@ export interface IUser {
 }
 
 export type IUserInfo = Pick<IUser, "id" | "email">;
+
+export interface IServerActionResponse {
+  error?: string;
+  message?: string;
+}

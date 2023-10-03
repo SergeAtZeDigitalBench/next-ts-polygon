@@ -1,14 +1,13 @@
-import AuthForm from "@/components/AuthForm";
+import RegisterForm from "@/components/RegisterForm";
 import { registerUserAction } from "@/lib/serverActions";
-import { IPageProps } from "@/types";
 
-const RegisterPage = async ({ params, searchParams }: IPageProps) => {
+const RegisterPage = async () => {
   return (
     <>
       <h1 className="text-3xl font-bold underline text-center">
         Register page
       </h1>
-      <AuthForm registerUserAction={registerUserAction} />
+      <RegisterForm registerUserAction={registerUserAction} />
     </>
   );
 };

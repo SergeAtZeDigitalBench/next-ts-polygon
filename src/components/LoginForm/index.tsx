@@ -3,13 +3,7 @@
 import React from "react";
 import { signIn } from "next-auth/react";
 
-interface IProps {
-  registerUserAction?: (formData: FormData) => Promise<undefined | string>;
-}
-
-const AuthForm = ({ registerUserAction }: IProps): JSX.Element => {
-  const isRegister = !!registerUserAction;
-
+const AuthForm = (): JSX.Element => {
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -23,10 +17,7 @@ const AuthForm = ({ registerUserAction }: IProps): JSX.Element => {
 
   return (
     <form
-      action={
-        isRegister ? (registerUserAction as unknown as string) : undefined
-      }
-      onSubmit={!isRegister ? onSubmit : undefined}
+      onSubmit={onSubmit}
       className="flex flex-col gap-2 mx-auto mt-10 max-w-md"
     >
       <input
@@ -43,7 +34,7 @@ const AuthForm = ({ registerUserAction }: IProps): JSX.Element => {
         type="submit"
         className="px-2 py-1 rounded w-full bg-black text-white font-semibold"
       >
-        {isRegister ? "register" : "login"}
+        login
       </button>
     </form>
   );
