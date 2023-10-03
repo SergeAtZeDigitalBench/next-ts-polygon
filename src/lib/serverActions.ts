@@ -1,3 +1,5 @@
+"use server";
+
 import { redirect } from "next/navigation";
 
 import { addNewUser, areCredentialsValid } from "./api";
@@ -5,8 +7,6 @@ import { addNewUser, areCredentialsValid } from "./api";
 export const registerUserAction = async (
   formData: FormData
 ): Promise<undefined | string> => {
-  "use server";
-
   try {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;

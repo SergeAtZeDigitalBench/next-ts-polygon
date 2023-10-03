@@ -1,11 +1,17 @@
-import "./globals.css";
+import { getServerSession } from "next-auth";
+
+import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
+import SessionProvider from "@/components/SessionProvider";
 import Navigation from "@/components/Navigation";
+import "./globals.css";
 
 type Props = {
   children: React.ReactNode;
 };
 
-export default function RootLayout({ children }: Props) {
+const RootLayout = async ({ children }: Props) => {
+  const session = await getServerSession(nextAuthOptions);
+
   return (
     <html lang="en">
       {/*
@@ -14,11 +20,15 @@ export default function RootLayout({ children }: Props) {
       */}
       <head />
       <body>
-        <header>
-          <Navigation />
-        </header>
-        <main className="max-w-screen-xl mx-auto">{children}</main>
+        <SessionProvider session={session}>
+          <header>
+            <Navigation />
+          </header>
+          <main className="max-w-screen-xl mx-auto">{children}</main>
+        </SessionProvider>
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

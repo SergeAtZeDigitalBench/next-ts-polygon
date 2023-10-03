@@ -1,20 +1,13 @@
 import React from "react";
 import Link from "next/link";
 
-import { navLinks } from "@/constants";
+import AuthLinks from "@/components/AuthLinks";
 
-interface IProps {
-  [x: string]: unknown;
-}
-
-const Navigation = ({}: IProps): JSX.Element => {
+const Navigation = (): JSX.Element => {
   return (
-    <nav className="flex gap-2 justify-center py-4">
-      {navLinks.map(({ id, href, name }) => (
-        <Link key={id} href={href} className="px-4 py-2">
-          {name}
-        </Link>
-      ))}
+    <nav className="max-w-screen-xl mx-auto flex gap-2 justify-between p-4">
+      <Link href="/">Home</Link>
+      <AuthLinks />
     </nav>
   );
 };

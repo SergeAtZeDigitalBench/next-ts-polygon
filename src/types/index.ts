@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-export interface PageProps<
+export interface IPageProps<
   P = Record<string, string>,
   Q = Record<string, string>
 > {
@@ -8,7 +8,7 @@ export interface PageProps<
   searchParams: Q;
 }
 
-export interface ParentProps {
+export interface IParentProps {
   children: ReactNode;
 }
 
