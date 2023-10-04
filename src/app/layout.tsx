@@ -2,7 +2,7 @@ import { Roboto_Condensed } from "next/font/google";
 import type { Metadata } from "next";
 
 import "./globals.css";
-import Navigation from "@/components/Navigation";
+import ImagesGrid from "@/components/ImagesGrid";
 
 export const metadata: Metadata = {
   title: "Udemy course app",
@@ -28,10 +28,11 @@ export default function RootLayout({ children }: Props) {
       */}
       <head />
       <body className={robotoFont.className}>
-        <header>
-          <Navigation />
-        </header>
-        <main className="max-w-screen-xl mx-auto">{children}</main>
+        <header></header>
+        <main className="max-w-screen-xl mx-auto">
+          <ImagesGrid />
+          {children}
+        </main>
       </body>
     </html>
   );
