@@ -16,7 +16,6 @@ interface IProps {
 
 const ImageSliderIntermediate = ({ images }: IProps): JSX.Element => {
   const [imageIndex, setImageIndex] = useState<number>(0);
-  const currentImage = images[imageIndex];
 
   const showNext = () => {
     setImageIndex((current) => {
