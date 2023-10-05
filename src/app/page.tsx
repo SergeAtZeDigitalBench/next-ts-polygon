@@ -1,13 +1,15 @@
-import React from "react";
+import ImageSliderBasic from "@/components/ImageSliderBasic";
+import { IMAGES } from "@/constants";
 
-import { IPageProps } from "@/types";
-
-const Homepage = async ({ params, searchParams }: IPageProps) => {
+const Homepage = async () => {
   return (
     <>
       <h1 className="text-3xl font-bold underline text-center">
-        NEXT V13 POLYGON
+        Image sliders
       </h1>
+      <div className="flex flex-col gap-2 justify-center items-center">
+        <ImageSliderBasic images={IMAGES} />
+      </div>
     </>
   );
 };
