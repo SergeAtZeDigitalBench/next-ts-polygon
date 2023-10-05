@@ -1,4 +1,8 @@
-export const navLinks = [{ id: 1, href: "/", name: "homepage" }];
+export const navLinks = [
+  { id: 1, href: "/", name: "homepage" },
+  { id: 2, href: "/intermediate", name: "intermediate" },
+  { id: 3, href: "/advanced", name: "advanced" },
+];
 
 export const IMAGES = [
   {
