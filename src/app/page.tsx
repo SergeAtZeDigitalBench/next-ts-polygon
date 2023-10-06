@@ -1,8 +1,4 @@
-import React from 'react'
-
-import { IPageProps } from '@/types'
-
-const Homepage = async ({ params, searchParams }: IPageProps) => {
+const HomePage = async () => {
   return (
     <>
       <h1 className="text-3xl font-bold underline text-center">
@@ -12,4 +8,4 @@ const Homepage = async ({ params, searchParams }: IPageProps) => {
   )
 }
 
-export default Homepage
+export default HomePage
