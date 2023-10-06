@@ -6,5 +6,5 @@ export default function Head() {
       <meta name="description" content="Home page" />
       <link rel="icon" href="/favicon.ico" />
     </>
-  );
+  )
 }

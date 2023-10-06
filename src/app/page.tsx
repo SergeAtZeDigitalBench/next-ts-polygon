@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-import { IPageProps } from "@/types";
+import { IPageProps } from '@/types'
 
 const Homepage = async ({ params, searchParams }: IPageProps) => {
   return (
@@ -9,7 +9,7 @@ const Homepage = async ({ params, searchParams }: IPageProps) => {
         NEXT V13 POLYGON
       </h1>
     </>
-  );
-};
+  )
+}
 
-export default Homepage;
+export default Homepage

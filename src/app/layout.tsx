@@ -1,9 +1,9 @@
-import "./globals.css";
-import Navigation from "@/components/Navigation";
+import './globals.css'
+import Navigation from '@/components/Navigation'
 
 type Props = {
-  children: React.ReactNode;
-};
+  children: React.ReactNode
+}
 
 export default function RootLayout({ children }: Props) {
   return (
@@ -20,5 +20,5 @@ export default function RootLayout({ children }: Props) {
         <main className="max-w-screen-xl mx-auto">{children}</main>
       </body>
     </html>
-  );
+  )
 }
