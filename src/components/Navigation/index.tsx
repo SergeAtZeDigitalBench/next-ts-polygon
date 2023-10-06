@@ -1,10 +1,10 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react'
+import Link from 'next/link'
 
-import { navLinks } from "@/constants";
+import { navLinks } from '@/constants'
 
 interface IProps {
-  [x: string]: unknown;
+  [x: string]: unknown
 }
 
 const Navigation = ({}: IProps): JSX.Element => {
@@ -16,7 +16,7 @@ const Navigation = ({}: IProps): JSX.Element => {
         </Link>
       ))}
     </nav>
-  );
-};
+  )
+}
 
-export default Navigation;
+export default Navigation
