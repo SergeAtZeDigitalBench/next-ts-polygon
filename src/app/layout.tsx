@@ -1,24 +1,32 @@
-import './globals.css'
-import Navigation from '@/components/Navigation'
+import { ReactNode } from 'react'
+import type { Metadata } from 'next'
 
-type Props = {
-  children: React.ReactNode
+import './globals.css'
+
+export const metadata: Metadata = {
+  title: 'NextGram',
+  description:
+    'A sample Next.js app showing dynamic routing with modals as a route.',
 }
 
-export default function RootLayout({ children }: Props) {
+interface IProps {
+  children: ReactNode
+  modal: ReactNode
+}
+
+const RootLayout = ({ children, modal }: IProps) => {
   return (
     <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
       <head />
       <body>
-        <header>
-          <Navigation />
-        </header>
-        <main className="max-w-screen-xl mx-auto">{children}</main>
+        <header></header>
+        <main className="container mx-auto">
+          {children}
+          {modal}
+        </main>
       </body>
     </html>
   )
 }
+
+export default RootLayout

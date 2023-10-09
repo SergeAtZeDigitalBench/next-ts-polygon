@@ -5,3 +5,11 @@ export interface IPageProps<
   params: P
   searchParams: Q
 }
+
+export interface IPhoto {
+  id: string
+  name: string
+  href: string
+  username: string
+  imageSrc: string
+}
