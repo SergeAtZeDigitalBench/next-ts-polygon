@@ -1,13 +1,10 @@
-import React from 'react'
+import PageMainContent from '@/components/PageMainContent'
 
-import { IPageProps } from '@/types'
-
-const Homepage = async ({ params, searchParams }: IPageProps) => {
+const Homepage = async () => {
   return (
     <>
-      <h1 className="text-3xl font-bold underline text-center">
-        NEXT V13 POLYGON
-      </h1>
+      <h1 className="text-3xl font-bold underline text-center">Homepage</h1>
+      <PageMainContent />
     </>
   )
 }

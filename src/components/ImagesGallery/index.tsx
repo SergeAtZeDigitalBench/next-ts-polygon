@@ -9,8 +9,10 @@ interface IProps {
   topic?: string
 }
 
-const Gallery = async ({ topic }: IProps) => {
-  const endpoint = !!topic ? `/search?query=${topic}&page=1` : `/curated?page=1`
+const ImagesGallery = async ({ topic }: IProps) => {
+  const endpoint = !!topic
+    ? `/search?query=${topic}&page=1&per_page=6`
+    : `/curated?page=1&per_page=6`
 
   const url = env.PEXELS_API_URL + endpoint
 
@@ -31,4 +33,4 @@ const Gallery = async ({ topic }: IProps) => {
   )
 }
 
-export default Gallery
+export default ImagesGallery

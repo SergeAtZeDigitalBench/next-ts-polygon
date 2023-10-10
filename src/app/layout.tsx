@@ -3,9 +3,11 @@ import Navigation from '@/components/Navigation'
 
 type Props = {
   children: React.ReactNode
+  users: React.ReactNode
+  images: React.ReactNode
 }
 
-export default function RootLayout({ children }: Props) {
+export default function RootLayout({ children, users, images }: Props) {
   return (
     <html lang="en">
       {/*
@@ -17,7 +19,14 @@ export default function RootLayout({ children }: Props) {
         <header>
           <Navigation />
         </header>
-        <main className="max-w-screen-xl mx-auto">{children}</main>
+        <main className="max-w-screen-xl mx-auto">
+          <div className=" grid grid-cols-2">
+            <div>{users}</div>
+            <div>{images}</div>
+          </div>
+
+          {children}
+        </main>
       </body>
     </html>
   )
