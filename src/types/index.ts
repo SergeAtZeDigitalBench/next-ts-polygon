@@ -6,6 +6,11 @@ export interface IPageProps<
   searchParams: Q
 }
 
+export interface IErrorPageProps {
+  error: Error & { digest?: string }
+  reset: () => void
+}
+
 export interface IUser {
   id: number
   name: string
@@ -28,4 +33,11 @@ export interface IUser {
     catchPhrase: string
     bs: string
   }
+}
+
+export interface IPost {
+  userId: number
+  id: number
+  title: string
+  body: string
 }
