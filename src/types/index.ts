@@ -6,4 +6,11 @@ export interface IPageProps<
   searchParams: Q
 }
 
-export type IServerActionResult = { message: 'ok' } | { error: string }
+export type IServerActionResult = { message?: 'ok'; error?: string }
+
+export interface ITodo {
+  id: string
+  createdAt: Date
+  completed: boolean
+  title: string
+}

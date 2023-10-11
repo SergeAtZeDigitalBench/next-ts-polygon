@@ -21,7 +21,6 @@ export const addTodoServerAction = async (
     })
 
     revalidatePath('/server-action/todos')
-
     return { message: 'ok' }
   } catch (err) {
     const error = err instanceof Error ? err.message : 'Failed to create todo'
