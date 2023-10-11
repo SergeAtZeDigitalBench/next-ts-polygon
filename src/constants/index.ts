@@ -8,4 +8,9 @@ export const navLinks = [
     href: '/server-action/client-form',
     name: 'server action - client form',
   },
+  {
+    id: 6,
+    href: '/server-action/todos',
+    name: 'todo list',
+  },
 ]

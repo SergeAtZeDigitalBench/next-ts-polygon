@@ -18,3 +18,5 @@ export const postMockData = async <D = any>(data: D, options: IDelayProps) => {
   await wait(options)
   console.log('API received data: ', data)
 }
+
+export const isServer = () => typeof window === 'undefined'
