@@ -1,6 +1,14 @@
 import { NextResponse } from 'next/server'
 
+import { getBlogposts } from '@/lib/api'
+import { formatBlogpostList } from '@/lib/adapter'
+
 const OPEN_AI_API = 'http://localhost:3030'
+
+export const GET = async (req: Request) => {
+  const blogposts = await getBlogposts()
+  return NextResponse.json({ data: formatBlogpostList(blogposts) })
+}
 
 export const POST = async (req: Request) => {
   const { subject } = await req.json()

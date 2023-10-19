@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server'
 import Cors from 'micro-cors'
-import { headers } from 'next/headers'
+import { revalidateTag } from 'next/cache'
+
+import { TAGS } from '@/constants'
+import { createBlogpost } from '@/lib/api'
 
 const cors = Cors({
   allowMethods: ['POST', 'HEAD'],
@@ -16,7 +19,8 @@ export const POST = async (req: Request) => {
     })
   }
 
-  console.log('Blog received from Open AI :>> ', body)
+  await createBlogpost(body)
+  revalidateTag(TAGS.BLOG_POSTS)
 
   return NextResponse.json({ data: 'ok' })
 }
