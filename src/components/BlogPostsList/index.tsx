@@ -1,6 +1,9 @@
 import React from 'react'
 
 import { IBlogpost } from '@/types'
+import { deleteBlogpostServerAction } from '@/lib/serverActions'
+
+import DeleteButton from './components/DeleteButton'
 
 interface IProps {
   blogPosts: IBlogpost[]
@@ -21,6 +24,12 @@ const BlogPostsList = ({ blogPosts }: IProps): JSX.Element => {
           >
             <h4 className="text-lg font-semibold mb-2">{title}</h4>
             <p>{body}</p>
+            <DeleteButton
+              handleDeleteAction={async () => {
+                'use server'
+                return await deleteBlogpostServerAction(id)
+              }}
+            />
           </div>
         )
       })}

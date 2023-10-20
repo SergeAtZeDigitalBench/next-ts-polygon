@@ -1,7 +1,10 @@
 'use server'
 
-import { OPEN_AI_API } from '@/constants'
+import { revalidateTag } from 'next/cache'
+
+import { OPEN_AI_API, TAGS } from '@/constants'
 import { IServerActionResponse } from '@/types'
+import { deleteBlogpost } from '@/lib/api'
 
 export const createBlogPost = async (
   formData: FormData
@@ -12,7 +15,6 @@ export const createBlogPost = async (
       throw new Error('Form data: subject value is missing')
     }
 
-    console.log('posting { subject } :>> ', { subject })
     const res = await fetch(`${OPEN_AI_API}/new-blog`, {
       method: 'POST',
       body: JSON.stringify({ subject }),
@@ -28,6 +30,20 @@ export const createBlogPost = async (
     const { status: message } = await res.json()
 
     return { message }
+  } catch (err) {
+    const error =
+      err instanceof Error ? err.message : 'Failed to create new blogpost'
+    return { error }
+  }
+}
+
+export const deleteBlogpostServerAction = async (
+  id: string
+): Promise<IServerActionResponse> => {
+  try {
+    await deleteBlogpost(id)
+    revalidateTag(TAGS.BLOG_POSTS)
+    return { message: 'ok' }
   } catch (err) {
     const error =
       err instanceof Error ? err.message : 'Failed to create new blogpost'
