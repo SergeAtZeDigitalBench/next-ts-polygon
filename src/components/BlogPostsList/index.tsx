@@ -12,14 +12,14 @@ const BlogPostsList = ({ blogPosts }: IProps): JSX.Element => {
   }
 
   return (
-    <div className="grid grid-cols-gallery gap-2">
+    <div className="grid grid-cols-gallery gap-2 p-2">
       {blogPosts.map(({ id, title, body }) => {
         return (
           <div
             key={id}
-            className="flex justify-center items-center relative h-64 rounded-xl"
+            className="flex flex-col justify-center relative h-64 rounded-xl bg-slate-200 p-2"
           >
-            <h4>{title}</h4>
+            <h4 className="text-lg font-semibold mb-2">{title}</h4>
             <p>{body}</p>
           </div>
         )
