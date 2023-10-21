@@ -21,3 +21,8 @@ export interface ITodo {
   title: string
   isComplete: boolean
 }
+
+export interface IServerActionResponse {
+  error?: string
+  message?: string
+}
