@@ -5,3 +5,19 @@ export interface IPageProps<
   params: P
   searchParams: Q
 }
+
+export interface ITodoDb {
+  id: string
+  createdAt: Date
+  updatedAt: Date
+  title: string
+  isComplete: boolean
+}
+
+export interface ITodo {
+  id: string
+  createdAt: string
+  updatedAt: string
+  title: string
+  isComplete: boolean
+}
