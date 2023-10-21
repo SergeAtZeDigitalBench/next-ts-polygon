@@ -18,3 +18,12 @@ model Todo {
   title      String
   isComplete Boolean @default(false)
 }
+
+model BlogPost {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title String
+  body  String
+}

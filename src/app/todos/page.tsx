@@ -1,8 +1,8 @@
 import { revalidatePath } from 'next/cache'
 
 import { getTodosList, toggleTodo, deleteTodo, formatTodos } from '@/lib/api'
-import TodoCart from '@/components/TodoCart'
 import { IServerActionResponse } from '@/types'
+import TodoCart from '@/components/TodoCart'
 import AddForm from '@/components/AddForm'
 
 const TodosPage = async () => {
