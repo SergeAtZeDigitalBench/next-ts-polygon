@@ -1,5 +1,6 @@
 import './globals.css'
 import Navigation from '@/components/Navigation'
+import SocketsProvider from '@/Providers/SocketsProvider'
 
 type Props = {
   children: React.ReactNode
@@ -14,10 +15,12 @@ export default function RootLayout({ children }: Props) {
       */}
       <head />
       <body>
-        <header>
-          <Navigation />
-        </header>
-        <main className="max-w-screen-xl mx-auto">{children}</main>
+        <SocketsProvider>
+          <header>
+            <Navigation />
+          </header>
+          <main className="max-w-screen-xl mx-auto">{children}</main>
+        </SocketsProvider>
       </body>
     </html>
   )

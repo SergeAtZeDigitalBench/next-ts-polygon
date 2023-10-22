@@ -1,46 +1,31 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { io } from 'socket.io-client'
+import { useEffect } from 'react'
 
-export const socket = io(process.env.NEXT_PUBLIC_SOCKET_IO_SERVER || '')
-export const EVENT = {
-  REFRESH_PAGE: 'refresh_page',
-}
+import { WS_EVENT } from '@/constants'
+import { useSocketContext } from '@/Providers/SocketsProvider'
 
 interface IProps {}
 
 const SocketsMessage = ({}: IProps): JSX.Element => {
-  const [isConnected, setIsConnected] = useState(socket.connected)
-  const [myEvents, setMyEvents] = useState<any[]>([])
+  const { isConnected, receivedEvents, setReceivedEvents, socket } =
+    useSocketContext()
 
   useEffect(() => {
-    function onConnect() {
-      setIsConnected(true)
-    }
-
-    function onDisconnect() {
-      setIsConnected(false)
-    }
-
     function onMyEvent(value: any) {
-      setMyEvents((previous) => [...previous, value])
+      setReceivedEvents((previous) => [...previous, value])
     }
 
-    socket.on('connect', onConnect)
-    socket.on('disconnect', onDisconnect)
-    socket.on(EVENT.REFRESH_PAGE, onMyEvent)
+    socket?.on(WS_EVENT.REFRESH_PAGE, onMyEvent)
 
     return () => {
-      socket.off('connect', onConnect)
-      socket.off('disconnect', onDisconnect)
-      socket.off(EVENT.REFRESH_PAGE, onMyEvent)
+      socket?.off(WS_EVENT.REFRESH_PAGE, onMyEvent)
     }
-  }, [])
+  }, [socket, setReceivedEvents])
 
   useEffect(() => {
-    console.log('myEvents: ', myEvents)
-  }, [myEvents])
+    console.log('receivedEvents: ', receivedEvents)
+  }, [receivedEvents])
 
   return (
     <div>
