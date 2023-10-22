@@ -1,6 +1,6 @@
 import './globals.css'
 import Navigation from '@/components/Navigation'
-import SocketsProvider from '@/Providers/SocketsProvider'
+import SocketsProvider from '@/providers/SocketsProvider'
 
 type Props = {
   children: React.ReactNode

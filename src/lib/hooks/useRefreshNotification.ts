@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 
-import { useSocketContext } from '@/Providers/SocketsProvider'
+import { useSocketContext } from '@/providers/SocketsProvider'
 import { WS_EVENT } from '@/constants'
 
 export const useRefreshNotification = () => {

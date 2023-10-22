@@ -1,6 +1,6 @@
 'use client'
 
-import { useSocketContext } from '@/Providers/SocketsProvider'
+import { useSocketContext } from '@/providers/SocketsProvider'
 
 const SocketConnectStatus = (): JSX.Element => {
   const { isConnected } = useSocketContext()
