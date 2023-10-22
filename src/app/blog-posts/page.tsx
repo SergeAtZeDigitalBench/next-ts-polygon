@@ -24,10 +24,43 @@ const BlogPostsPage = async () => {
     }
   }
 
+  const addBlogPostActon = async (
+    formData: FormData
+  ): Promise<IServerActionResponse> => {
+    'use server'
+
+    try {
+      const subject = formData.get('subject')
+      if (!subject || typeof subject !== 'string') {
+        throw new Error('Subject missing')
+      }
+      const url = process.env.OPEN_AI_URL + '/new-blog'
+      const res = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({ subject }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+
+      if (!res.ok) {
+        throw new Error(res.statusText)
+      }
+
+      const response = await res.json()
+
+      return { message: 'ok' }
+    } catch (err) {
+      const msg: string =
+        err instanceof Error ? err.message : (error as any).ToString()
+      return { error: msg || 'failed to create blog' }
+    }
+  }
+
   return (
     <>
       <h1 className="text-3xl font-bold underline text-center">Title</h1>
-      <AddBlogPost />
+      <AddBlogPost addBlogPostActon={addBlogPostActon} />
       {error && (
         <p className="text-center font-bold text-red-600 my-4">{error}</p>
       )}

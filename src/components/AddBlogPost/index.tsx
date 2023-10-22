@@ -1,31 +1,23 @@
-const AddBlogPost = (): JSX.Element => {
-  const addBlogPostActon = async (formData: FormData) => {
-    'use server'
+'use client'
 
-    const subject = formData.get('subject')
-    if (!subject || typeof subject !== 'string') {
-      throw new Error('Subject missing')
-    }
-    const url = process.env.OPEN_AI_URL + '/new-blog'
-    const res = await fetch(url, {
-      method: 'POST',
-      body: JSON.stringify({ subject }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+import { useRef } from 'react'
+import { useFormState } from '@/lib/hooks/useFormState'
+import { IServerActionResponse } from '@/types'
+import DisplayNotifications from './DisplayNotifications'
 
-    if (!res.ok) {
-      throw new Error(res.statusText)
-    }
+interface IProps {
+  addBlogPostActon: (formData: FormData) => Promise<IServerActionResponse>
+}
 
-    const response = await res.json()
-    console.log('AI response :>> ', response)
-  }
+const AddBlogPost = ({ addBlogPostActon }: IProps): JSX.Element => {
+  const [status, formAction, formRef] = useFormState({
+    serverAction: addBlogPostActon,
+  })
 
   return (
     <form
-      action={addBlogPostActon}
+      action={formAction}
+      ref={formRef}
       className="max-w-sm mx-auto flex flex-col justify-center items-center gap-2 my-4"
     >
       <input
@@ -40,6 +32,12 @@ const AddBlogPost = (): JSX.Element => {
       >
         add
       </button>
+
+      <DisplayNotifications
+        error={status.error}
+        message={status.message}
+        pending={status.pending}
+      />
     </form>
   )
 }
