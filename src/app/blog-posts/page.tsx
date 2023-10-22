@@ -3,6 +3,7 @@ import { revalidatePath } from 'next/cache'
 import { getBlogposts, formatBlogposts, deleteBlogpost } from '@/lib/api'
 import { IServerActionResponse } from '@/types'
 
+import SocketsMessage from '@/components/SocketsMessage'
 import BlogPostCard from '@/components/BlogPostCard'
 import AddBlogPost from '@/components/AddBlogPost'
 
@@ -42,6 +43,7 @@ const BlogPostsPage = async () => {
           />
         ))}
       </div>
+      <SocketsMessage />
     </>
   )
 }

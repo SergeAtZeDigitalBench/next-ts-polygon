@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import Cors from 'micro-cors'
 import { revalidatePath } from 'next/cache'
+
+import { notifySocketServer } from '@/lib/fetch'
 import { createBlogpost } from '@/lib/api'
 
 const cors = Cors({
@@ -17,11 +19,25 @@ export const POST = async (req: Request) => {
     })
   }
 
-  const [_blog, error] = await createBlogpost(body)
+  const [_blog, errorCreateBlogpost] = await createBlogpost(body)
 
-  if (!error) {
-    revalidatePath('/blog-posts')
+  if (errorCreateBlogpost) {
+    return new Response(null, {
+      status: 500,
+      statusText: 'Failed create the blogpost',
+    })
   }
 
-  return NextResponse.json({ data: 'ok' })
+  revalidatePath('/blog-posts')
+
+  const [res, errorSocketServer] = await notifySocketServer('/blog-posts')
+
+  if (errorSocketServer) {
+    return new Response(null, {
+      status: 500,
+      statusText: 'Failed notify the sockets server',
+    })
+  }
+
+  return NextResponse.json({ data: res?.message || 'ok' })
 }
