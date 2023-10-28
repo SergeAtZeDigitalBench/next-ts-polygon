@@ -1,12 +1,12 @@
-import SimpleForm from '@/components/SimpleForm'
+import RegisterForm from '@/components/RegisterForm'
 
 const Page = async () => {
   return (
     <>
       <h1 className="text-3xl font-bold underline text-center mb-4">
-        Simple form input demo
+        Register
       </h1>
-      <SimpleForm />
+      <RegisterForm />
     </>
   )
 }
