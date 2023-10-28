@@ -1,13 +1,12 @@
-import React from 'react'
+import AuthStatusDisplay from '@/components/AuthStatusDisplay'
 
-import { IPageProps } from '@/types'
-
-const Homepage = async ({ params, searchParams }: IPageProps) => {
+const Homepage = async () => {
   return (
     <>
       <h1 className="text-3xl font-bold underline text-center">
-        NEXT V13 POLYGON
+        Hellow Coffee masters App! ☕️
       </h1>
+      <AuthStatusDisplay isAuthenticated={false} />
     </>
   )
 }
