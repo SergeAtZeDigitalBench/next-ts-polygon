@@ -6,11 +6,7 @@ import { useAuthContext } from '@/context/AuthContext'
 
 const AccountDisplay = (): JSX.Element | null => {
   const router = useRouter()
-  const { user, setUser } = useAuthContext()
-
-  if (!user) {
-    router.push('/')
-  }
+  const { user, logout } = useAuthContext()
 
   return (
     <div className="max-w-sm mx-auto my-4 p-2 flex flex-col justify-center items-center gap-2 rounded bg-orange-400">
@@ -20,7 +16,7 @@ const AccountDisplay = (): JSX.Element | null => {
       <button
         onClick={() => {
           router.push('/')
-          setUser(null)
+          logout()
         }}
         className="px-2 py-1 rounded bg-green-600 border border-green-900 hover:bg-green-700 text-white min-w-[100px]"
       >

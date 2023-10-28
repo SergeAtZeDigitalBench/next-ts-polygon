@@ -3,30 +3,20 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-import { fetchJson } from '@/lib/fetch'
+import ToggleShowIconButton from '@/components/ToggleShowIconButton'
 import { useAuthContext } from '@/context/AuthContext'
-interface IFormValues {
-  email: string
-  password: string
-}
+import { ILoginInput } from '@/types'
 
-const isFormValid = (values: IFormValues) => {
-  const isAnyEmpty = Object.values(values).some((value) => value.length === 0)
-
-  return !isAnyEmpty
-}
-
-const initState: IFormValues = {
+const initState: ILoginInput = {
   email: '',
   password: '',
 } as const
 
 const LoginForm = (): JSX.Element => {
   const router = useRouter()
-  const { setUser } = useAuthContext()
-  const [error, setError] = useState<null | string>(null)
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [formFields, setFormFields] = useState<IFormValues>({ ...initState })
+  const { login, isLoading, error } = useAuthContext()
+  const [formFields, setFormFields] = useState<ILoginInput>({ ...initState })
+  const [isPassword, setIsPassword] = useState<boolean>(true)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target
@@ -35,30 +25,10 @@ const LoginForm = (): JSX.Element => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (!isFormValid(formFields)) {
-      setError('Form invalid')
-      return
-    }
-
-    setIsLoading(true)
-    setError(null)
-
-    const url = `${process.env.NEXT_PUBLIC_AUTH_SERVER}/auth/login`
-    const [res, err] = await fetchJson<{
-      data: { id: string; email: string; name: string }
-    }>(url, {
-      method: 'POST',
-      body: JSON.stringify(formFields),
-    })
-
-    setIsLoading(false)
-    setError(err)
-
-    if (res?.data) {
-      setUser(res.data)
-      router.push('/')
-    }
+    login(formFields, () => router.push('/'))
   }
+
+  const toggleShowpassword = () => setIsPassword((current) => !current)
 
   return (
     <form
@@ -84,17 +54,26 @@ const LoginForm = (): JSX.Element => {
         <label htmlFor="loginPassword" className="text-xs">
           Password
         </label>
-        <input
-          type="password"
-          name="password"
-          autoComplete="current-password"
-          placeholder="Your password"
-          required
-          id="loginPassword"
-          value={formFields.password}
-          onChange={handleChange}
-          className="px-2 py-1 rounded bg-gray-200 border-2 border-gray-400 w-full"
-        />
+        <div className="relative">
+          <input
+            type={isPassword ? 'password' : 'text'}
+            name="password"
+            autoComplete="current-password"
+            placeholder="Your password"
+            required
+            id="loginPassword"
+            value={formFields.password}
+            onChange={handleChange}
+            className="px-2 py-1 rounded bg-gray-200 border-2 border-gray-400 w-full"
+            title={isPassword ? 'view password' : 'hide password'}
+          />
+          <ToggleShowIconButton
+            isVisible={!isPassword}
+            onClick={toggleShowpassword}
+            type="button"
+            className="absolute top-2 right-2"
+          />
+        </div>
       </fieldset>
       <div className="my-2">
         <button
