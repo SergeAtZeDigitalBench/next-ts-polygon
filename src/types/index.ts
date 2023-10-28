@@ -5,3 +5,8 @@ export interface IPageProps<
   params: P
   searchParams: Q
 }
+
+export interface IUser {
+  name: string
+  email: string
+}

@@ -1,5 +1,6 @@
-import './globals.css'
+import { AuthContextProvider } from '@/context/AuthContext'
 import Navigation from '@/components/Navigation'
+import './globals.css'
 
 type Props = {
   children: React.ReactNode
@@ -10,10 +11,12 @@ export default function RootLayout({ children }: Props) {
     <html lang="en">
       <head />
       <body>
-        <header>
-          <Navigation />
-        </header>
-        <main className="max-w-screen-xl mx-auto">{children}</main>
+        <AuthContextProvider>
+          <header>
+            <Navigation />
+          </header>
+          <main className="max-w-screen-xl mx-auto">{children}</main>
+        </AuthContextProvider>
       </body>
     </html>
   )
