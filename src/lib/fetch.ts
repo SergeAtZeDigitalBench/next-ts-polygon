@@ -8,6 +8,7 @@ export const fetchJson = async <D = any>(
         'Content-Type': 'application/json',
         ...options?.headers,
       },
+      credentials: 'include',
       ...options,
     })
 

@@ -1,6 +1,12 @@
 'use client'
 
-import React, { useState, useContext, createContext } from 'react'
+import React, {
+  useState,
+  useContext,
+  createContext,
+  useEffect,
+  useRef,
+} from 'react'
 
 import { IUser, IRegisterInput, ILoginInput } from '@/types'
 import { isFormValid } from '@/lib/formUtils'
@@ -83,6 +89,31 @@ export const AuthContextProvider = ({ children }: IProps): JSX.Element => {
     setUser(null)
     onSuccess && onSuccess()
   }
+
+  useEffect(() => {
+    const whoAmIUrl = `${process.env.NEXT_PUBLIC_AUTH_SERVER}/auth/whoami`
+    const controller = new AbortController()
+    let isMounted = true
+
+    const fetchStatus = async () => {
+      const [user, error] = await fetchJson<IUser>(whoAmIUrl, {
+        method: 'GET',
+        signal: controller.signal,
+        credentials: 'include',
+      })
+
+      if (isMounted && user) {
+        setUser(user)
+      }
+    }
+
+    fetchStatus()
+    return () => {
+      console.log('app unmount')
+      isMounted = false
+      controller.abort()
+    }
+  }, [])
 
   return (
     <AuthContext.Provider
