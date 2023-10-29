@@ -1,4 +1,6 @@
-## Frontend Masters Course
+## Pre-requisite:
+- a dev server for authentication needs to run at `http://localhost:5050`
+- dev server repo is at: https://github.com/Sergei29/express-auth-server
 
 ### Intro to Next.js V3
 
