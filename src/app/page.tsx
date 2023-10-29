@@ -6,7 +6,7 @@ const Homepage = async ({ params, searchParams }: IPageProps) => {
   return (
     <>
       <h1 className="text-3xl font-bold underline text-center">
-        NEXT V13 POLYGON
+        NEXT V14 POLYGON
       </h1>
     </>
   )
