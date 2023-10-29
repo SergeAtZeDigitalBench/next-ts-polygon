@@ -1,12 +1,6 @@
 'use client'
 
-import React, {
-  useState,
-  useContext,
-  createContext,
-  useEffect,
-  useRef,
-} from 'react'
+import React, { useState, useContext, createContext, useEffect } from 'react'
 
 import { IUser, IRegisterInput, ILoginInput } from '@/types'
 import { isFormValid } from '@/lib/formUtils'
@@ -84,8 +78,12 @@ export const AuthContextProvider = ({ children }: IProps): JSX.Element => {
     }
   }
 
-  const logout = (onSuccess?: () => void) => {
-    if (!user) return
+  const logout = async (onSuccess?: () => void) => {
+    const logoutUrl = `${process.env.NEXT_PUBLIC_AUTH_SERVER}/auth/logout`
+    await fetchJson(logoutUrl, {
+      method: 'GET',
+      credentials: 'include',
+    })
     setUser(null)
     onSuccess && onSuccess()
   }
