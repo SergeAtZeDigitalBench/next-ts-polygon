@@ -34,14 +34,13 @@ const UserForm = ({ onUserAdd }: IProps): JSX.Element => {
 
   return (
     <form
-      role="form"
       data-testid="UserForm"
       onSubmit={handleSubmit}
       className="w-80 mt-12 p-2 bg-slate-100 border-slate-300 rounded"
     >
       <div className="my-2 flex gap-2 justify-between">
         <label className="font-semibold" htmlFor="userFormName">
-          Name
+          Enter Name
         </label>
         <input
           value={name}
@@ -53,7 +52,7 @@ const UserForm = ({ onUserAdd }: IProps): JSX.Element => {
       </div>
       <div className="my-2 flex gap-2 justify-between">
         <label className="font-semibold" htmlFor="userFormEmail">
-          Email
+          Enter Email
         </label>
         <input
           value={email}
