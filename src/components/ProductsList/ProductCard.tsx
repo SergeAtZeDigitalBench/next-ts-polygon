@@ -12,7 +12,7 @@ const ProductCard = ({
   product: { name, price, material, color },
 }: IProps): JSX.Element => {
   return (
-    <div className="col-span-1 flex flex-col">
+    <div className="col-span-1 flex flex-col" data-testid="ProductCard">
       <div
         role="img"
         className="object-cover w-full h-36 transition duration-500 group-hover:scale-105"

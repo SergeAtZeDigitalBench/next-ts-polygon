@@ -15,13 +15,14 @@ const ProductsList = ({}: IProps): JSX.Element => {
   })
 
   return (
-    <div className="p-4">
+    <div className="p-4" data-testid="ProductsList">
       <div className="grid grid-cols-2 grid-flow-row gap-8 sm:grid-cols-3">
         {renderedProducts}
       </div>
 
       <div className="text-center text-xl my-8">
         <button
+          role="button"
           disabled={isLoading}
           className="p-4 rounded border-2"
           onClick={() => !isLoading && fetchNextPage()}

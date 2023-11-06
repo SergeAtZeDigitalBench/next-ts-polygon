@@ -15,7 +15,7 @@ const productsFetcher = async (limit: number) => {
   await pause(800)
   const nextPage = new Array(limit).fill(0).map(() => {
     return {
-      id: faker.datatype.uuid(),
+      id: faker.string.uuid(),
       name: faker.commerce.productName(),
       price: faker.commerce.price(),
       material: faker.commerce.productMaterial(),
