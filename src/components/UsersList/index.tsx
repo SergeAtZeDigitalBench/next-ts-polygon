@@ -16,6 +16,14 @@ const UsersList = ({ users }: IProps): JSX.Element => {
     )
   })
 
+  if (users.length === 0) {
+    return (
+      <p data-testid="UsersList" className="ml-4 font-semibold text-green-700">
+        No users
+      </p>
+    )
+  }
+
   return (
     <table
       data-testid="UsersList"
@@ -27,7 +35,9 @@ const UsersList = ({ users }: IProps): JSX.Element => {
           <th className="border-x border-x-green-700 px-2">Email</th>
         </tr>
       </thead>
-      <tbody className="border border-green-700">{renderedUsers}</tbody>
+      <tbody className="border border-green-700" data-testid="UsersList_tbody">
+        {renderedUsers}
+      </tbody>
     </table>
   )
 }
