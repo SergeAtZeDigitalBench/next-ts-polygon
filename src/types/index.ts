@@ -14,3 +14,8 @@ export interface IProduct {
   description: string
   color: string
 }
+
+export interface IUser {
+  name: string
+  email: string
+}
