@@ -5,3 +5,12 @@ export interface IPageProps<
   params: P
   searchParams: Q
 }
+
+export interface IProduct {
+  id: string
+  name: string
+  price: string
+  material: string
+  description: string
+  color: string
+}
