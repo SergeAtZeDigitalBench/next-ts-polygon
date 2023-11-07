@@ -1,4 +1,6 @@
-## Frontend Masters Course
+## Testing with Jest & React testing Library
+- to view th current test render UI log: in your test case of interest, `screen.logTestingPlaygroundURL()`
+- to run the RTL Book helper app: `npx rtl-book serve testing-notes.js`
 
 ### Intro to Next.js V3
 
