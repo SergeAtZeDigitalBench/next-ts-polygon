@@ -44,6 +44,8 @@ const LoginForm = (): JSX.Element => {
           type="email"
           name="email"
           placeholder="Your email"
+          // the full list of autocomplete attributes values: https://www.w3.org/TR/WCAG21/#input-purposes
+          // the `autoComplete` attribute helps the browser autocomplete API, so if the username is saved it will paste it in if the user agrees
           autoComplete="username"
           required
           id="loginEmail"
@@ -58,6 +60,8 @@ const LoginForm = (): JSX.Element => {
           <input
             type={isPassword ? 'password' : 'text'}
             name="password"
+            // the `autoComplete` attribute helps the browser autocomplete API, so if the pw is saved it will paste it in if the user agrees
+            // important: to pass the `"current-password"` value , so the browser api knows that we are about to find the existing saved user pw
             autoComplete="current-password"
             placeholder="Your password"
             required

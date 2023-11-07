@@ -1,3 +1,13 @@
+## Form Autocompletion:
+- https://www.w3.org/WAI/WCAG21/Techniques/html/H98
+- https://www.w3.org/TR/WCAG21/#input-purposes
+- https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-autocomplete
+- https://www.w3schools.com/accessibility/accessibility_autocomplete.php
+- https://www.chromium.org/developers/design-documents/form-styles-that-chromium-understands/
+- https://www.carlrippon.com/accessible-react-forms
+- https://www.linkedin.com/advice/3/how-can-you-improve-user-convenience-security-autocomplete
+- https://web.dev/articles/sign-in-form-best-practices
+
 ## Pre-requisite:
 - a dev server for authentication needs to run at `http://localhost:5050`
 - dev server repo is at: https://github.com/Sergei29/express-auth-server

@@ -59,6 +59,8 @@ const RegisterForm = (): JSX.Element => {
           type="email"
           name="email"
           placeholder="Your email"
+          // the full list of autocomplete attributes values: https://www.w3.org/TR/WCAG21/#input-purposes
+          // the `autoComplete` attribute helps the browser autocomplete API, so the provided pw can be saved upon user agreement
           autoComplete="username"
           required
           id="registerEmail"
@@ -74,6 +76,9 @@ const RegisterForm = (): JSX.Element => {
             type={isPassword ? 'password' : 'text'}
             name="password"
             placeholder="Your password"
+            // the full list of autocomplete attributes values: https://www.w3.org/TR/WCAG21/#input-purposes
+            // the `autoComplete` attribute helps the browser autocomplete API, so the provided pw can be saved upon user agreement
+            // important: to pass the `"new-password"` value , so the browser api knows that user is submitting a new pw value
             autoComplete="new-password"
             required
             id="registerPassword"
