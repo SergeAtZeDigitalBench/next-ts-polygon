@@ -65,4 +65,26 @@ describe('UserForm', () => {
     expect(onUserAdd).toHaveBeenCalledTimes(1)
     expect(onUserAdd).toHaveBeenCalledWith(mockUser)
   })
+
+  it('should clear the form fields when submitted', async () => {
+    render(<UserForm {...mockProps} />)
+
+    // Also can get by: const nameInput = screen.getByLabelText(/enter name/i)
+    const nameInput = screen.getByRole('textbox', { name: /enter name/i })
+    const emailInput = screen.getByRole('textbox', { name: /enter email/i })
+    await userEvent.click(nameInput)
+    await userEvent.keyboard(mockUser.name)
+    await userEvent.click(emailInput)
+    await userEvent.keyboard(mockUser.email)
+    await userEvent.keyboard('{Enter}')
+    const nameInputAfterSubmit = screen.getByRole('textbox', {
+      name: /enter name/i,
+    })
+    const emailInputAfterSubmit = screen.getByRole('textbox', {
+      name: /enter email/i,
+    })
+
+    expect(nameInputAfterSubmit).toHaveValue('')
+    expect(emailInputAfterSubmit).toHaveValue('')
+  })
 })
