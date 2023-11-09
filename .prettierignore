@@ -13,3 +13,5 @@ postcss.config.js
 README.md
 tailwind.config.js
 tsconfig.json
+testing-notes.js
+query-notes.js
