@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import type { Metadata } from 'next'
 
+import Navigation from '@/components/Navigation'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -11,18 +12,24 @@ export const metadata: Metadata = {
 
 interface IProps {
   children: ReactNode
-  modal: ReactNode
+  team: ReactNode
+  dashboard: ReactNode
 }
 
-const RootLayout = ({ children, modal }: IProps) => {
+const RootLayout = ({ children, team, dashboard }: IProps) => {
   return (
     <html lang="en">
       <head />
       <body>
-        <header></header>
+        <header>
+          <Navigation />
+        </header>
         <main className="container mx-auto">
           {children}
-          {modal}
+          <div className="grid grid-cols-2 gap-2 mt-2">
+            {team}
+            {dashboard}
+          </div>
         </main>
       </body>
     </html>
