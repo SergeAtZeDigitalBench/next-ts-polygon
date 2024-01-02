@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 const navLinks = [
   { id: 1, href: '/', title: 'home' },
-  //   { id: 2, href: '/parallel-routes', title: 'parallel routes' },
+  { id: 2, href: '/settings', title: 'settings' },
 ]
 const Navigation = (): JSX.Element => {
   return (

@@ -1,6 +1,5 @@
-## Frontend Masters Course
-
-### Intro to Next.js V3
+### Parallel routes
+- Attention: the parallel routes lot of behaviour working on production build only, while in dev mode it will render 404 pages.
 
 https://scottmoss.notion.site/scottmoss/Intro-to-Next-js-V3-6cefbdba58d94e3897dcb8d7e7fc0337
 
