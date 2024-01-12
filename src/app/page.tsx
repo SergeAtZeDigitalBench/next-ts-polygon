@@ -3,9 +3,14 @@ import { IPageProps } from '@/types'
 const Homepage = async ({ params, searchParams }: IPageProps) => {
   return (
     <>
-      <h1 className="text-3xl font-bold underline text-center">
-        NEXT V.14 POLYGON
-      </h1>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/logo.png"
+        alt="A server surrounded by magic sparkles."
+        className="heroImage mx-auto"
+      />
+      <h1 className="pageTitle">Welcome to this NextJS Course!</h1>
+      <p>🔥 Let&apos;s get started! 🔥</p>
     </>
   )
 }

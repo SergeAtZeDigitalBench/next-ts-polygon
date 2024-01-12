@@ -1,9 +1,8 @@
-import Navigation from '@/components/Navigation'
 import './globals.css'
 
 export const metadata = {
-  title: 'NextJS v.14 Code Polygon',
-  description: 'Code polygon for latest Next.js v.14, features and patterns',
+  title: 'NextJS Course App',
+  description: 'Your first NextJS app!',
 }
 
 type Props = {
@@ -18,11 +17,8 @@ export default function RootLayout({ children }: Props) {
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>
-        <header>
-          <Navigation />
-        </header>
-        <main className="max-w-screen-xl mx-auto">{children}</main>
+      <body className="body">
+        <main className="text-center my-20 mx-auto">{children}</main>
       </body>
     </html>
   )
