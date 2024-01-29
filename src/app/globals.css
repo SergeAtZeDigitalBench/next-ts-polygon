@@ -1,3 +1,80 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --shadow-size: 43px;
+  --blur-size: 100px;
+  --blur-strength: 3px;
+}
+
+@layer components {
+  .popup {
+    /* // default center position with fixed size   */
+    position: absolute;
+    inset: 0;
+    width: 450px;
+    height: 220px;
+    margin: auto;
+
+    /* // center content within the popup */
+    display: grid;
+    place-items: center;
+    align-content: center;
+
+    /* // visual appearance */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 var(--shadow-size, 40px) #00000099;
+  }
+
+  .popup::before {
+    content: '';
+
+    position: absolute;
+
+    /* // should not affect the contents of the container */
+    z-index: -1;
+
+    /* // blur size is minimum the size of the container box */
+    inset: calc(var(--blur-size, 100px) * -1);
+
+    /* // the backdrop blur  */
+    /* // for safari */
+    -webkit-backdrop-filter: blur(var(--blur-strength, 10px));
+    backdrop-filter: blur(var(--blur-strength, 10px));
+
+    /* // a mask fades the blur effect so it gets weaker */
+    /* // towards the edges, further from the container box. */
+    /* // (fill color is irrelevant, so "red" is used as it's the shortest color name) */
+    mask: linear-gradient(
+        to top,
+        transparent 0%,
+        red var(--blur-size) calc(100% - var(--blur-size)),
+        transparent 100%
+      ),
+      linear-gradient(
+        to left,
+        transparent 0%,
+        red var(--blur-size) calc(100% - var(--blur-size)),
+        transparent 100%
+      );
+    -webkit-mask: linear-gradient(
+        to top,
+        transparent 0%,
+        red var(--blur-size) calc(100% - var(--blur-size)),
+        transparent 100%
+      ),
+      linear-gradient(
+        to left,
+        transparent 0%,
+        red var(--blur-size) calc(100% - var(--blur-size)),
+        transparent 100%
+      );
+
+    /* // merges the above multiple gradients (mask) so only the pixels which
+    // overlap both are rendered, and this creates the illusion of a fade-out mask */
+    mask-composite: intersect;
+    -webkit-mask-composite: source-in;
+  }
+}

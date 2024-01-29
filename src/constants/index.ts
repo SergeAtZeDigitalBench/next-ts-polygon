@@ -5,4 +5,5 @@ export const navLinks = [
     href: '/staggered-text-animation',
     name: 'staggered text',
   },
+  { id: 3, href: '/blurred-shadows-card', name: 'blurred shadows card' },
 ]
