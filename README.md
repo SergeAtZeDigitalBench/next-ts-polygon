@@ -1,4 +1,69 @@
-## Frontend Masters Course
+## Adding the slide-in animation
+
+Article: https://www.builder.io/blog/stagger-text-animation-tailwind
+
+To enhance Tailwind's animation capabilities, 
+modify theme.extend.animation and theme.extend.keyframes in the tailwind.config.js file:
+
+```js
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {
+      keyframes: {
+        slidein: {
+          from: {
+            opacity: "0",
+            transform: "translateY(-10px)",
+          },
+          to: {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+      },
+      animation: {
+        slidein: "slidein 1s ease 300ms",
+      },
+    },
+  },
+  plugins: [],
+};
+
+```
+This code snippet defines a new slidein animation. The from keyframe starts with the content at 0% opacity and slightly above its final position, while the to keyframe completes the animation at 100% opacity and its final position.
+
+The animation lasts 1 second with an ‘ease’ timing-function and a 300ms delay.
+
+Apply this animation to each of the four elements representing the hero text in Hero.tsx:
+
+```jsx
+<!-- Element 1 -->
+<div className="animate-slidein ...">
+  <div className="...">Introducing Linear Asks</div>
+  <img loading="lazy" src="..." className="..." alt="Icon" />
+</div>
+
+<!-- Element 2 -->
+<h1 className="animate-slidein ...">
+  Linear is a better way
+  <br />
+  to build products
+</h1>
+
+<!-- Element 3 -->
+<p className="animate-slidein ...">
+  Meet the new standard for modern software development.
+  <br />
+  Streamline issues, sprints, and product roadmaps.
+</p>
+
+<!-- Element 4 -->
+<div className="animate-slidein ...">
+  <div className="...">Get started</div>
+  <img loading="lazy" src="..." className="..." alt="Arrow icon" />
+</div>
+```
 
 ### Intro to Next.js V3
 
