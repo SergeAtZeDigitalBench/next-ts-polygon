@@ -1,10 +1,10 @@
 'use client'
 
-import React from 'react'
+import { useFormState } from 'react-dom'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler, SubmitErrorHandler } from 'react-hook-form'
 
-import type { IRegisterResponseError, FormValues } from '@/types'
+import type { IServerActionResponse, FormValues } from '@/types'
 
 import {
   Form,
@@ -26,51 +26,60 @@ const defaultValues: FormValues = {
   email: '',
 }
 
-const RegisterForm = (): JSX.Element => {
+interface IProps {
+  onDataAction: (
+    prevState: IServerActionResponse,
+    data?: FormData
+  ) => IServerActionResponse | Promise<IServerActionResponse>
+}
+
+const RegisterServerFormDataNoJs = ({ onDataAction }: IProps): JSX.Element => {
+  const [formState, formAction] = useFormState<IServerActionResponse>(
+    onDataAction,
+    { data: null, error: null }
+  )
+
   const formProps = useForm<FormValues>({
     defaultValues,
     resolver: zodResolver(regitrationSchema),
   })
 
+  // in case if JS is enabled
   const onSubmitSuccess: SubmitHandler<FormValues> = async (values) => {
-    try {
-      const res = await fetch('/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(values),
-      })
+    const formData = new FormData()
+    formData.append('first', values.first)
+    formData.append('last', values.last)
+    formData.append('email', values.email)
 
-      if (!res.ok) {
-        const errorResponse = (await res.json()) as {
-          error: IRegisterResponseError
-        }
-        const msg = handleResponseError(errorResponse.error)
+    const response = await onDataAction({ data: null, error: null }, formData)
 
-        throw new Error(msg)
-      }
-
-      const data = await res.json()
-
-      console.log('REGISTER data :>> ', data)
-    } catch (error) {
-      console.log(
-        'REGISTER error :>> ',
-        error instanceof Error ? error.message : error
-      )
-    }
+    console.log('Action submit response: ', response)
   }
 
+  // in case if JS is enabled
   const onSubmitError: SubmitErrorHandler<FormValues> = (errors) => {
     console.log('onSubmitError() :>> ', errors)
   }
 
   return (
     <Form {...formProps}>
+      <div className="h-16 flex flex-col justify-center items-center">
+        {formState.data && (
+          <p className="text-green-700 font-semibold text-center">done!</p>
+        )}
+        {formState.error && (
+          <p className="text-red-700 font-semibold text-center">
+            {handleResponseError(formState.error)}
+          </p>
+        )}
+      </div>
+
       <form
-        className=" max-w-3xl mt-4 flex flex-col gap-4 mx-auto"
+        // if JS disabled - it will proceed to serve raction
+        action={formAction as any}
+        // if JS enabled - it will call submit function
         onSubmit={formProps.handleSubmit(onSubmitSuccess, onSubmitError)}
+        className=" max-w-3xl mt-4 flex flex-col gap-4 mx-auto"
       >
         <FormField
           control={formProps.control}
@@ -132,4 +141,4 @@ const RegisterForm = (): JSX.Element => {
   )
 }
 
-export default RegisterForm
+export default RegisterServerFormDataNoJs

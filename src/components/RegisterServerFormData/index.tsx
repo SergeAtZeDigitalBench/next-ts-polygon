@@ -4,7 +4,7 @@ import React from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler, SubmitErrorHandler } from 'react-hook-form'
 
-import type { IRegisterResponseError, FormValues } from '@/types'
+import type { IServerActionResponse, FormValues } from '@/types'
 
 import {
   Form,
@@ -18,7 +18,6 @@ import {
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { regitrationSchema } from '@/lib/schemas/registration'
-import { handleResponseError } from '@/lib/utils'
 
 const defaultValues: FormValues = {
   first: '',
@@ -26,40 +25,25 @@ const defaultValues: FormValues = {
   email: '',
 }
 
-const RegisterForm = (): JSX.Element => {
+interface IProps {
+  onDataAction: (data: FormData) => Promise<IServerActionResponse>
+}
+
+const RegisterServerFormData = ({ onDataAction }: IProps): JSX.Element => {
   const formProps = useForm<FormValues>({
     defaultValues,
     resolver: zodResolver(regitrationSchema),
   })
 
   const onSubmitSuccess: SubmitHandler<FormValues> = async (values) => {
-    try {
-      const res = await fetch('/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(values),
-      })
+    const formData = new FormData()
+    formData.append('first', values.first)
+    formData.append('last', values.last)
+    formData.append('email', values.email)
 
-      if (!res.ok) {
-        const errorResponse = (await res.json()) as {
-          error: IRegisterResponseError
-        }
-        const msg = handleResponseError(errorResponse.error)
+    const response = await onDataAction(formData)
 
-        throw new Error(msg)
-      }
-
-      const data = await res.json()
-
-      console.log('REGISTER data :>> ', data)
-    } catch (error) {
-      console.log(
-        'REGISTER error :>> ',
-        error instanceof Error ? error.message : error
-      )
-    }
+    console.log('Action submit response: ', response)
   }
 
   const onSubmitError: SubmitErrorHandler<FormValues> = (errors) => {
@@ -132,4 +116,4 @@ const RegisterForm = (): JSX.Element => {
   )
 }
 
-export default RegisterForm
+export default RegisterServerFormData
