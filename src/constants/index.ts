@@ -12,4 +12,9 @@ export const navLinks = [
     href: '/register-server-act-form-data-no-js',
     name: 'register-server-act-form-data-no-js',
   },
+  {
+    id: 6,
+    href: '/register-server-async-validation',
+    name: 'register-server-async-validation',
+  },
 ]
