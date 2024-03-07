@@ -3,7 +3,8 @@ import { NextResponse, NextRequest } from 'next/server'
 import { regitrationSchema } from '@/lib/schemas/registration'
 
 export const POST = async (req: NextRequest) => {
-  const body = await req.json()
+  const bodyFormData = await req.formData()
+  const body = Object.fromEntries(bodyFormData)
 
   const parsed = regitrationSchema.safeParse(body)
 

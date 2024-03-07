@@ -1,11 +1,14 @@
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
-import { ZodError } from 'zod'
+
+import type { IRegisterResponseError } from '@/types'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const handleZodError = <T = any>(error: ZodError<T>) => {
-  return error.issues.map((current) => current.message).join('. ')
+export const handleResponseError = (error: IRegisterResponseError) => {
+  return Object.values(error)
+    .map((current) => current)
+    .join('. ')
 }

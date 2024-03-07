@@ -29,7 +29,7 @@ const defaultValues: FormValues = {
   email: '',
 }
 
-const RegisterForm = (): JSX.Element => {
+const RegisterFormData = (): JSX.Element => {
   const formProps = useForm<FormValues>({
     defaultValues,
     resolver: zodResolver(regitrationSchema),
@@ -37,18 +37,22 @@ const RegisterForm = (): JSX.Element => {
 
   const onSubmitSuccess: SubmitHandler<FormValues> = async (values) => {
     try {
-      const res = await fetch('/api/register', {
+      const formData = new FormData()
+      formData.append('first', values.first)
+      formData.append('last', values.last)
+      formData.append('email', values.email)
+
+      const res = await fetch('/api/register-form-data', {
         method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(values),
+        body: formData,
       })
 
       if (!res.ok) {
         const errorResponse = (await res.json()) as {
           error: IRegisterResponseError
         }
+
+        console.log('errorResponse :>> ', errorResponse)
         const msg = handleResponseError(errorResponse.error)
 
         throw new Error(msg)
@@ -135,4 +139,6 @@ const RegisterForm = (): JSX.Element => {
   )
 }
 
-export default RegisterForm
+export default RegisterFormData
+
+// "Content-Type": "application/x-www-form-urlencoded"
