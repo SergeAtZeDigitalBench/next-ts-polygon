@@ -3,7 +3,7 @@
 import React from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler, SubmitErrorHandler } from 'react-hook-form'
-import { z } from 'zod'
+import { z, ZodError } from 'zod'
 
 import {
   Form,
@@ -17,6 +17,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { regitrationSchema } from '@/lib/schemas/registration'
+import { handleZodError } from '@/lib/utils'
 
 interface ServerErrors {
   first?: string[]
@@ -48,24 +49,27 @@ const RegisterForm = (): JSX.Element => {
       })
 
       if (!res.ok) {
-        const errorResponse = await res.json()
-        const msgs = Object.values(errorResponse.error as ServerErrors)
-          .flat()
-          .join('. ')
+        const errorResponse = (await res.json()) as {
+          error: ZodError<FormValues>
+        }
+        const msg = handleZodError(errorResponse.error)
 
-        throw new Error(msgs)
+        throw new Error(msg)
       }
 
       const data = await res.json()
 
-      console.log('response data :>> ', data)
+      console.log('REGISTER data :>> ', data)
     } catch (error) {
-      console.log('error :>> ', error instanceof Error ? error.message : error)
+      console.log(
+        'REGISTER error :>> ',
+        error instanceof Error ? error.message : error
+      )
     }
   }
 
   const onSubmitError: SubmitErrorHandler<FormValues> = (errors) => {
-    console.log('submit errors :>> ', errors)
+    console.log('onSubmitError() :>> ', errors)
   }
 
   return (
