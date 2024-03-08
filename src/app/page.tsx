@@ -4,7 +4,9 @@ import Projects from '@/components/Projects'
 const Homepage = async () => {
   return (
     <>
-      <HeroSection />
+      {/* @ts-ignore Server component */}
+      <HeroSection page="homepage" />
+      {/* @ts-ignore Server component */}
       <Projects />
     </>
   )
