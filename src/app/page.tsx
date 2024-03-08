@@ -1,11 +1,11 @@
-import { IPageProps } from '@/types'
+import HeroSection from '@/components/HeroSection'
+import Projects from '@/components/Projects'
 
-const Homepage = async ({ params, searchParams }: IPageProps) => {
+const Homepage = async () => {
   return (
     <>
-      <h1 className="text-3xl font-bold underline text-center">
-        NEXT V.14 POLYGON
-      </h1>
+      <HeroSection />
+      <Projects />
     </>
   )
 }

@@ -1,4 +1,3 @@
-import Navigation from '@/components/Navigation'
 import '@/styles/globals.css'
 
 export const metadata = {
@@ -19,10 +18,8 @@ const RootLayout = ({ children }: Props) => {
       */}
       <head />
       <body>
-        <header>
-          <Navigation />
-        </header>
-        <main className="max-w-screen-xl mx-auto">{children}</main>
+        <header></header>
+        <main>{children}</main>
       </body>
     </html>
   )
