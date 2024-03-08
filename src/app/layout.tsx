@@ -1,8 +1,8 @@
 import Navigation from '@/components/Navigation'
-import './globals.css'
+import '@/styles/globals.css'
 
 export const metadata = {
-  title: 'NextJS v.14 Code Polygon',
+  title: 'NextJS | Contentful CMS',
   description: 'Code polygon for latest Next.js v.14, features and patterns',
 }
 
@@ -10,7 +10,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export default function RootLayout({ children }: Props) {
+const RootLayout = ({ children }: Props) => {
   return (
     <html lang="en">
       {/*
@@ -27,3 +27,5 @@ export default function RootLayout({ children }: Props) {
     </html>
   )
 }
+
+export default RootLayout

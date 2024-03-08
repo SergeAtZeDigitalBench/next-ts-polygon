@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@types/node": "18.11.15",
+    "contentful": "^10.8.0",
     "eslint": "8.29.0",
     "eslint-config-next": "^14.1.2",
     "next": "^14.1.2",
