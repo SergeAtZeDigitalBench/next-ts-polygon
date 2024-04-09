@@ -1,3 +1,4 @@
+import BrowserMswProvider from '@/providers/BrowserMswProvider'
 import Navigation from '@/components/Navigation'
 import './globals.css'
 
@@ -19,10 +20,12 @@ export default function RootLayout({ children }: Props) {
       */}
       <head />
       <body>
-        <header>
-          <Navigation />
-        </header>
-        <main className="max-w-screen-xl mx-auto">{children}</main>
+        <BrowserMswProvider>
+          <header>
+            <Navigation />
+          </header>
+          <main className="max-w-screen-xl mx-auto">{children}</main>
+        </BrowserMswProvider>
       </body>
     </html>
   )
