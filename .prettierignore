@@ -8,7 +8,6 @@ public
 .vscode
 .env
 .eslintrc.json
-next.config.js
 postcss.config.js
 README.md
 tailwind.config.js

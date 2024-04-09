@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    experimental: {
-        instrumentationHook: true
-    },
+  experimental: {
+    instrumentationHook: true,
+  },
   webpack(config, { isServer }) {
     /**
      * @description temp fix from: https://github.com/mswjs/msw/issues/1801
@@ -23,6 +23,6 @@ const nextConfig = {
 
     return config
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
