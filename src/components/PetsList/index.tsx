@@ -4,14 +4,10 @@ import { useState, useEffect } from 'react'
 
 import { getErrorMessage } from '@/lib/common'
 
-type Props = {
-  initialPets?: string[] | null
-}
-
-const PetsList = ({ initialPets }: Props): JSX.Element => {
+const PetsList = (): JSX.Element => {
   const [error, setError] = useState<null | string>(null)
   const [isLoading, setisLoading] = useState<boolean>(false)
-  const [pets, setPets] = useState<string[]>(() => initialPets || [])
+  const [pets, setPets] = useState<string[]>([])
 
   useEffect(() => {
     let isMounted = true
