@@ -1,23 +1,25 @@
 import { unstable_noStore as noStore } from 'next/cache'
 
-const fetchPets = async (): Promise<[string[], null] | [null, string]> => {
+import { Todo } from '@/types'
+
+const fetchTodos = async (): Promise<[Todo[], null] | [null, string]> => {
   try {
-    const res = await fetch('https://api.example.com/pets', {
+    const res = await fetch('https://jsonplaceholder.typicode.com/todos', {
       cache: 'no-store',
     })
-    const payload = (await res.json()) as { data: string[] }
+    const payload = (await res.json()) as Todo[]
 
-    return [payload.data, null]
+    return [payload, null]
   } catch (error) {
     console.log('server error :>> ', error)
     return [null, 'fetch error']
   }
 }
 
-const PetsListSsr = async () => {
+const TodosListSsr = async () => {
   noStore()
 
-  const [pets, error] = await fetchPets()
+  const [data, error] = await fetchTodos()
 
   return (
     <div className="p-2 bg-slate-200 rounded-lg my-4 max-w-5xl mx-auto">
@@ -28,15 +30,17 @@ const PetsListSsr = async () => {
       )}
 
       <ul className="pl-4 my-2 list-disc">
-        {pets && pets.map((current) => <li key={current}>{current}</li>)}
+        {data &&
+          data.map((current) => <li key={current.id}>{current.title}</li>)}
       </ul>
     </div>
   )
 }
+
 export const Loading = () => (
   <div className="p-2 bg-slate-200 rounded-lg my-4 max-w-5xl mx-auto h-10 flex flex-col justify-center items-center">
     <p>Loading...</p>
   </div>
 )
 
-export default PetsListSsr
+export default TodosListSsr

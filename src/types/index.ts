@@ -5,3 +5,10 @@ export interface IPageProps<
   params: P
   searchParams: Q
 }
+
+export type Todo = {
+  userId: number
+  id: number
+  title: string
+  completed: boolean
+}

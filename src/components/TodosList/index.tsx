@@ -2,12 +2,14 @@
 
 import { useState, useEffect } from 'react'
 
+import { Todo } from '@/types'
+
 import { getErrorMessage } from '@/lib/common'
 
-const usePets = () => {
+const useTodos = () => {
   const [error, setError] = useState<null | string>(null)
   const [isLoading, setisLoading] = useState<boolean>(false)
-  const [data, setData] = useState<string[]>([])
+  const [data, setData] = useState<Todo[]>([])
 
   useEffect(() => {
     let isMounted = true
@@ -15,7 +17,7 @@ const usePets = () => {
       try {
         setisLoading(true)
         setError(null)
-        const res = await fetch('https://api.example.com/pets', {
+        const res = await fetch('https://jsonplaceholder.typicode.com/todos', {
           method: 'GET',
         })
 
@@ -25,9 +27,9 @@ const usePets = () => {
           throw new Error(message?.error || res.statusText)
         }
 
-        const payload = (await res.json()) as { data: string[] }
+        const payload = (await res.json()) as Todo[]
 
-        isMounted && setData(payload.data)
+        isMounted && setData(payload)
       } catch (error) {
         isMounted && setError(getErrorMessage(error))
       } finally {
@@ -43,16 +45,16 @@ const usePets = () => {
   return { data, isLoading, error }
 }
 
-const PetsList = (): JSX.Element => {
-  const { data, isLoading, error } = usePets()
+const TodosList = (): JSX.Element => {
+  const { data, isLoading, error } = useTodos()
 
   return (
     <div className="p-2 bg-slate-200 rounded-lg my-4 max-w-5xl mx-auto">
       <h2 className="my-4 text-center text-xl font-semibold">Browser fetch</h2>
 
       <ul className=" list-disc pl-4 my-4">
-        {data.map((pet) => {
-          return <li key={pet}>{pet}</li>
+        {data.map((current) => {
+          return <li key={current.id}>{current.title}</li>
         })}
       </ul>
 
@@ -71,4 +73,4 @@ const PetsList = (): JSX.Element => {
   )
 }
 
-export default PetsList
+export default TodosList
