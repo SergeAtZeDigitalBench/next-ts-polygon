@@ -51,7 +51,7 @@ export const getPosts = async (): Promise<
 }
 
 export const getPostById = async (
-  id: number
+  id: string
 ): Promise<[Post, null] | [null, string]> => {
   try {
     const res = await fetch(`${process.env.JSON_PLACEHOLDER_API}/posts/${id}`)
