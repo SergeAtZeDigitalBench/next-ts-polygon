@@ -5,3 +5,10 @@ export type PageProps<
   params: P
   searchParams: Q
 }
+
+export type Post = {
+  userId: number
+  id: number
+  title: string
+  body: string
+}

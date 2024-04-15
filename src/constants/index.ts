@@ -3,4 +3,5 @@ export const navLinks = [
   { id: 2, href: '/dashboard', name: 'dashboard' },
   { id: 3, href: '/f1', name: 'f1' },
   { id: 4, href: '/f3', name: 'f3' },
+  { id: 5, href: '/gallery', name: 'gallery' },
 ]
