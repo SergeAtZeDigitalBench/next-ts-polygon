@@ -5,7 +5,9 @@ const DashboardPage = async () => {
 
   return (
     <>
-      <h1 className="text-3xl font-bold underline text-center">Dahsboard</h1>
+      <h1 className="text-3xl font-bold underline text-center my-4">
+        <span>Dashboard</span>
+      </h1>
     </>
   )
 }
