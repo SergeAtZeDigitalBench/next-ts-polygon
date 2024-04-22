@@ -77,4 +77,11 @@
     mask-composite: intersect;
     -webkit-mask-composite: source-in;
   }
+
+  .textGradient {
+    color: transparent;
+    -webkit-background-clip: text; /* Edge, Chrome */
+    background-clip: text; /* Safari, FF */
+    background-image: linear-gradient(to right, #218bff, #c084fc, #db2777);
+  }
 }
