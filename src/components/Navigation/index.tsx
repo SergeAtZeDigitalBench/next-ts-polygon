@@ -5,10 +5,6 @@ import SignOut from '@/components/SignOut'
 import { navLinks } from '@/constants'
 import { auth } from '@/lib/auth'
 
-interface IProps {
-  [x: string]: unknown
-}
-
 const Navigation = async () => {
   const session = await auth()
 
@@ -20,7 +16,10 @@ const Navigation = async () => {
         </Link>
       ))}
       {session ? (
-        <SignOut />
+        <>
+          <Link href="/private/account">account</Link>
+          <SignOut />
+        </>
       ) : (
         <Link href="/sign-in" className="ml-auto">
           sign in

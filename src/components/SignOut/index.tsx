@@ -3,12 +3,14 @@
 import { signOut } from 'next-auth/react'
 
 const SignOut = (): JSX.Element => {
+  const handleSignOut = () => {
+    signOut()
+  }
+
   return (
-    <div>
-      <button onClick={() => signOut({ redirect: true })} className="underline">
-        sign out
-      </button>
-    </div>
+    <button onClick={handleSignOut} className="underline">
+      sign out
+    </button>
   )
 }
 
