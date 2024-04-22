@@ -1,20 +1,31 @@
 import React from 'react'
 import Link from 'next/link'
 
+import SignOut from '@/components/SignOut'
 import { navLinks } from '@/constants'
+import { auth } from '@/lib/auth'
 
 interface IProps {
   [x: string]: unknown
 }
 
-const Navigation = ({}: IProps): JSX.Element => {
+const Navigation = async () => {
+  const session = await auth()
+
   return (
-    <nav className="flex gap-2 justify-center py-4">
+    <nav className=" max-w-5xl mx-auto flex gap-2 justify-center items-center py-4">
       {navLinks.map(({ id, href, name }) => (
         <Link key={id} href={href} className="px-4 py-2">
           {name}
         </Link>
       ))}
+      {session ? (
+        <SignOut />
+      ) : (
+        <Link href="/sign-in" className="ml-auto">
+          sign in
+        </Link>
+      )}
     </nav>
   )
 }

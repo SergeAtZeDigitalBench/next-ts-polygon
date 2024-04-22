@@ -16,6 +16,7 @@ export default function RootLayout({ children }: Props) {
       <head />
       <body>
         <header>
+          {/* @ts-ignore */}
           <Navigation />
         </header>
         <main className="max-w-screen-xl mx-auto">{children}</main>
