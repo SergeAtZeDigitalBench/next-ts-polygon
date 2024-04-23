@@ -10,9 +10,12 @@
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,mjs,cjs,json}'"
   },
   "dependencies": {
+    "mapbox-gl": "^3.3.0",
     "next": "^14.2.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.1.0",
+    "react-map-gl": "^7.1.7"
   },
   "devDependencies": {
     "@types/node": "18.11.15",
