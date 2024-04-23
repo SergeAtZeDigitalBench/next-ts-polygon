@@ -1,0 +1,3 @@
+#  this is the JSONPlaceholder Post:id endpoint
+
+GET https://jsonplaceholder.typicode.com/posts/1

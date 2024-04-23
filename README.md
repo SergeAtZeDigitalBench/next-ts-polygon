@@ -1,5 +1,32 @@
-## Frontend Masters Course
+## Mermaid Diagram
 
+```mermaid
+---
+title: This is flow chart One
+---
+flowchart LR
+    A[Hard] -->|Text| B(Round)
+    B --> C{IF a==b}
+    C -->|True| D[Result 1]
+    C -->|False| E[Result 2]
+    A --> Z1(Some stuff)
+    Z1 o--o|2-ways| Z2[(some DB)]
+    Z2 --- Z3[/3rd party/]
+    Z3 <--> Z4((other))
+```
+
+
+```mermaid
+---
+title: This is flow chart Two
+---
+flowchart TD
+    A[Christmas] -->|Get money| B(Go shopping)
+    B --> C{Let me think}
+    C -->|One| D[Laptop]
+    C -->|Two| E[iPhone]
+    C -->|Three| F[fa:fa-car Car]
+```
 ### Intro to Next.js V3
 
 https://scottmoss.notion.site/scottmoss/Intro-to-Next-js-V3-6cefbdba58d94e3897dcb8d7e7fc0337
