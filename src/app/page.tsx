@@ -3,8 +3,8 @@ import { IPageProps } from '@/types'
 const Homepage = async ({ params, searchParams }: IPageProps) => {
   return (
     <>
-      <h1 className="text-3xl font-bold underline text-center">
-        NEXT V.14 POLYGON
+      <h1 className="my-8 text-5xl font-bold textGradient text-center">
+        NEXT V.14 & MAPBOX
       </h1>
     </>
   )

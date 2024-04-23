@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-900 text-slate-100;
+  }
+}
+
+@layer components {
+  .textGradient {
+    color: transparent;
+    -webkit-background-clip: text; /* Edge, Chrome */
+    background-clip: text; /* Safari, FF */
+    background-image: linear-gradient(to right, #218bff, #c084fc, #db2777);
+  }
+}

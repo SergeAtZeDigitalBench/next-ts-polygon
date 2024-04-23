@@ -1,5 +1,5 @@
 import Navigation from '@/components/Navigation'
-import './globals.css'
+import '@/styles/globals.css'
 
 export const metadata = {
   title: 'NextJS v.14 Code Polygon',
