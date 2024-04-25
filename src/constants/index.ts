@@ -7,6 +7,11 @@ export const navLinks = [
   },
   { id: 3, href: '/blurred-shadows-card', name: 'blurred shadows card' },
   { id: 4, href: '/text-gradient', name: 'text-gradient' },
+  {
+    id: 5,
+    href: '/animated-border-gradient',
+    name: 'animated-border-gradient',
+  },
 ]
 
 export const paragraphs = [

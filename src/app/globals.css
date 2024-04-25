@@ -84,4 +84,22 @@
     background-clip: text; /* Safari, FF */
     background-image: linear-gradient(to right, #218bff, #c084fc, #db2777);
   }
+
+  .card-wrapper {
+    @apply overflow-hidden relative bg-gradient-to-b from-slate-700 to-slate-800 rounded-2xl;
+  }
+
+  .card-wrapper::before {
+    background: conic-gradient(
+      rgba(244, 114, 182, 0.4) 0deg,
+      rgba(192, 132, 252, 0.4) 0deg,
+      transparent 80deg
+    );
+
+    @apply absolute h-[150%] w-[150%] left-[-25%] top-[-25%] content-[''] animate-border-spin;
+  }
+
+  .card-content {
+    @apply absolute h-[calc(100%-4px)] w-[calc(100%-4px)] top-[2px] left-[2px] bg-gradient-to-b from-slate-800 to-slate-900 rounded-2xl;
+  }
 }
