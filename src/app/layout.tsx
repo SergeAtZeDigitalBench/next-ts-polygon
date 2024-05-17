@@ -1,3 +1,5 @@
+import 'ol/ol.css'
+
 import Navigation from '@/components/Navigation'
 import './globals.css'
 

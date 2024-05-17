@@ -5,3 +5,5 @@ export interface IPageProps<
   params: P
   searchParams: Q
 }
+
+export * from './ol'
