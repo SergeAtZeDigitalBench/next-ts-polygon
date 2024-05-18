@@ -1,9 +1,12 @@
-import Navigation from '@/components/Navigation'
+import { Inter } from 'next/font/google'
+import Link from 'next/link'
 import './globals.css'
 
+const inter = Inter({ subsets: ['latin'] })
+
 export const metadata = {
-  title: 'NextJS v.14 Code Polygon',
-  description: 'Code polygon for latest Next.js v.14, features and patterns',
+  title: 'The Bubbly Baker',
+  description: 'My amazing recipe app',
 }
 
 type Props = {
@@ -18,11 +21,16 @@ export default function RootLayout({ children }: Props) {
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>
+      <body className={inter.className}>
         <header>
-          <Navigation />
+          <Link href={'/'}>
+            <h1 className="text-3xl font-bold">The Bubbly Baker</h1>
+          </Link>
         </header>
-        <main className="max-w-screen-xl mx-auto">{children}</main>
+        {children}
+        <footer>
+          <p>Made with 💛</p>
+        </footer>
       </body>
     </html>
   )
