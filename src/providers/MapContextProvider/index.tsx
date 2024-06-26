@@ -14,17 +14,23 @@ import {
 import Map from 'ol/Map'
 import 'ol/ol.css'
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer'
-import { OSM, Vector as VectorSource } from 'ol/source'
+import { OSM, Vector as VectorSource, OGCMapTile } from 'ol/source'
 import GeoJSON from 'ol/format/GeoJSON'
-import { View } from 'ol'
+import { Feature, View } from 'ol'
 
-import { FeatureCollection, Feature, SelectedMapRegion } from '@/types'
+import {
+  FeatureCollection,
+  Feature as FeatureType,
+  SelectedMapRegion,
+} from '@/types'
 
 import {
   MANCHESTER_CENTER,
   WEB_MERCATOR_COORDINATE_SYSTEM_ID,
 } from '@/constants'
-import { vectorPolygonStyle } from '@/lib/ol'
+import { vectorPolygonStyle, markerPointerStyle } from '@/lib/ol'
+import { Point } from 'ol/geom'
+import { fromLonLat } from 'ol/proj'
 
 type Store = { map: Map | null; selectedRegion: SelectedMapRegion | null }
 type ContextType = {
@@ -37,7 +43,7 @@ const MapContext = createContext<ContextType | null>(null)
 
 type Props = {
   children: ReactNode
-  initialGeoJson: FeatureCollection<Feature> | null
+  initialGeoJson: FeatureCollection<FeatureType> | null
 }
 
 export const MapContextProvider = ({
@@ -54,9 +60,22 @@ export const MapContextProvider = ({
 
     const vectorLayer = new VectorLayer({
       source: new VectorSource({
-        features: new GeoJSON().readFeatures(initialGeoJson),
+        features: [...new GeoJSON().readFeatures(initialGeoJson)],
       }),
       style: [vectorPolygonStyle],
+    })
+
+    const markerFeat = new Feature({
+      geometry: new Point(fromLonLat(MANCHESTER_CENTER)),
+    })
+
+    markerFeat.setStyle(markerPointerStyle)
+
+    const markersLayer = new VectorLayer({
+      source: new VectorSource({
+        features: [markerFeat],
+        format: new GeoJSON(),
+      }),
     })
 
     const initialView = new View({
@@ -68,7 +87,11 @@ export const MapContextProvider = ({
     })
 
     const mapInstance = new Map({
-      layers: [osmBaseLayer, vectorLayer],
+      layers: [
+        osmBaseLayer,
+        // vectorLayer,
+        markersLayer,
+      ],
       view: initialView,
     })
 

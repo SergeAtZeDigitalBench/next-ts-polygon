@@ -2,8 +2,12 @@
 
 import { useEffect } from 'react'
 import { useMapContext } from '@/providers/MapContextProvider'
-import { interactionOnClick } from '@/lib/ol'
-import { MapBrowserEvent } from 'ol'
+import { MapBrowserEvent, Feature } from 'ol'
+import { Point } from 'ol/geom'
+import { fromLonLat } from 'ol/proj'
+
+import { interactionOnClick, markerPointerStyle } from '@/lib/ol'
+import VectorSource from 'ol/source/Vector'
 
 type MapEvent = MapBrowserEvent<any>
 type Listener = (event: MapEvent) => unknown
@@ -52,6 +56,23 @@ const useInteraction = () => {
       duration: 250,
       maxZoom: 15,
     })
+  }, [selectedRegion, map])
+
+  useEffect(() => {
+    if (!selectedRegion || !map) return
+    const { geometry, layer, feature } = selectedRegion
+
+    const location = geometry.getFirstCoordinate()
+    const feat = new Feature({
+      geometry: new Point(fromLonLat(location)),
+    })
+    feat.setStyle(markerPointerStyle)
+
+    // layer.setSource(
+    //   new VectorSource({
+    //     features: [feature, feat],
+    //   })
+    // )
   }, [selectedRegion, map])
 }
 
