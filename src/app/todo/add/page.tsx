@@ -1,14 +1,13 @@
 import CreateUpdateForm from '@/components/CreateUpdateForm'
 
-const ReactHookFormPage = async () => {
+const AddTodoPage = async () => {
   return (
     <>
       <h1 className="text-3xl font-bold underline text-center">
-        React Hook Form Page
+        Add Todo Page
       </h1>
-      <CreateUpdateForm />
     </>
   )
 }
 
-export default ReactHookFormPage
+export default AddTodoPage
