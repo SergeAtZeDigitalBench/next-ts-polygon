@@ -1,3 +1,5 @@
+import QueryClientProvider from '@/providers/QueryClientProvider'
+
 import Navigation from '@/components/Navigation'
 import './globals.css'
 
@@ -19,10 +21,12 @@ export default function RootLayout({ children }: Props) {
       */}
       <head />
       <body>
-        <header>
-          <Navigation />
-        </header>
-        <main className="max-w-screen-md mx-auto">{children}</main>
+        <QueryClientProvider>
+          <header>
+            <Navigation />
+          </header>
+          <main className="max-w-screen-md mx-auto">{children}</main>
+        </QueryClientProvider>
       </body>
     </html>
   )
