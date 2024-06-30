@@ -13,3 +13,7 @@ export type ServerActionResult<D = any> = {
   data?: D | null
   error?: string
 }
+
+export interface ApiErrorResponse {
+  error: string
+}
