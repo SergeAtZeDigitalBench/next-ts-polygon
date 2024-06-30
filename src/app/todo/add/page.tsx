@@ -9,16 +9,17 @@ const AddTodoPage = async () => {
       <h1 className="text-3xl font-bold underline text-center">
         Add Todo Page
       </h1>
-      <CreateUpdateForm
+      {/* <CreateUpdateForm
         onSubmit={async (values) => {
           'use server'
 
           const { data, message, error } = await addTodoServerAction(values)
+
           if (!!data) {
             redirect('/')
           }
         }}
-      />
+      /> */}
     </>
   )
 }

@@ -8,7 +8,7 @@ import DisplayTodo from '@/components/DisplayTodo'
 const TodoPage = async ({ params }: PageProps<{ todoId: string }>) => {
   const { todoId } = params
 
-  return <DisplayTodo todoId={todoId} />
+  return <h1>Todo ID: {todoId}</h1>
 }
 
 export default TodoPage

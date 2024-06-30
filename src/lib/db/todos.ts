@@ -1,8 +1,44 @@
 'use server'
+import { unstable_noStore as noStore } from 'next/cache'
 
 import type { ServerActionResult, Todo } from '@/types'
-import { Optional } from '@prisma/client/runtime/library'
 import { db } from '.'
+
+export const fetchTodos = async () => {
+  noStore()
+  return await db.todo.findMany()
+}
+
+export const fetchTodoBy = async ({ id }: { id: string }) => {
+  noStore()
+  console.log('fetch by id :>> ', id)
+  return await db.todo.findUniqueOrThrow({
+    where: { id },
+  })
+}
+
+export const addTodo = async (input: Pick<Todo, 'title' | 'completed'>) => {
+  noStore()
+  return await db.todo.create({
+    data: input,
+  })
+}
+export const updateTodo = async (
+  id: string,
+  input: Partial<Pick<Todo, 'title' | 'completed'>>
+) => {
+  noStore()
+  return await db.todo.update({
+    where: { id },
+    data: input,
+  })
+}
+export const deleteTodo = async (id: string) => {
+  noStore()
+  return await db.todo.delete({
+    where: { id },
+  })
+}
 
 export const getTodos = async (): Promise<ServerActionResult<Todo[]>> => {
   try {
@@ -45,9 +81,9 @@ export const addTodoServerAction = async (
   }
 }
 
-export const updateTodo = async (
+export const updateTodoServerAction = async (
   id: string,
-  input: Optional<Pick<Todo, 'title' | 'completed'>>
+  input: Partial<Pick<Todo, 'title' | 'completed'>>
 ): Promise<ServerActionResult<Todo>> => {
   try {
     const updatedTodo = await db.todo.update({

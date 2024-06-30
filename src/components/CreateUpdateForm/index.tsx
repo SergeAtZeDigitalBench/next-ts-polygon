@@ -18,7 +18,9 @@ const CreateUpdateForm = ({ current, onSubmit }: Props): JSX.Element => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<Inputs>()
+  } = useForm<Inputs>({
+    values: current,
+  })
 
   const isCompleted = watch('completed')
 
