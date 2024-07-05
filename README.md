@@ -1,4 +1,7 @@
-## Frontend Masters Course
+## Grid articles:
+
+- https://www.joshwcomeau.com/css/interactive-guide-to-grid/
+- https://www.joshwcomeau.com/css/full-bleed/
 
 ### Intro to Next.js V3
 
