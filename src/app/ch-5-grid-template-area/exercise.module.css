@@ -1,0 +1,23 @@
+.planetaryContainer {
+  grid-template-areas:
+    'Header Header Header'
+    'LargeMoon LargeMoon SquareA'
+    'LargeMoon LargeMoon SquareB'
+    'Footer Footer Footer';
+}
+
+.Header {
+  grid-area: Header;
+}
+.LargeMoon {
+  grid-area: LargeMoon;
+}
+.SquareA {
+  grid-area: SquareA;
+}
+.SquareB {
+  grid-area: SquareB;
+}
+.Footer {
+  grid-area: Footer;
+}

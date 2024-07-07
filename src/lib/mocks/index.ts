@@ -88,3 +88,87 @@ export const articles: Article[] = [
     },
   },
 ]
+
+export const planetaryData = [
+  {
+    id: 1,
+    image: {
+      src: 'https://assets.codepen.io/296057/fem-io.jpg',
+      alt: 'A pizza-looking moon. The outline of an erupting volcano is on the left.',
+    },
+    caption: 'Volcanic Activity on Io via',
+    citeLink: {
+      href: 'https://images.nasa.gov/details/PIA01530',
+      title: 'NASA',
+    },
+  },
+  {
+    id: 2,
+    image: {
+      src: 'https://assets.codepen.io/296057/fem-callisto.jpg',
+      alt: 'A moon with green, brown, and blue patches and many white craters.',
+    },
+    caption: ` Bright scars on a darker surface testify to a long history of impacts
+          on Jupiter moon Callisto in this image of Callisto from NASA Galileo
+          spacecraft.`,
+    citeLink: {
+      href: 'https://images.nasa.gov/details/PIA03456',
+      title: 'NASA',
+    },
+  },
+  {
+    id: 3,
+    image: {
+      src: 'https://assets.codepen.io/296057/fem-europa.jpg',
+      alt: 'A white moon with orange cracks all over the surface.',
+    },
+    caption: `The scene shows the stunning diversity of Europa's surface
+          geology. Long, linear cracks and ridges crisscross the surface,
+          interrupted by regions of disrupted terrain where the surface ice
+          crust has been broken up and re-frozen into new patterns.`,
+    citeLink: {
+      href: 'https://images.nasa.gov/details/PIA19048',
+      title: 'NASA',
+    },
+  },
+  {
+    id: 4,
+    image: {
+      src: 'https://assets.codepen.io/296057/fem-ganymede.jpg',
+      alt: 'A moon that looks similar to our own, with a giant crater in the upper right.',
+    },
+    caption: `
+      This enhanced image of the Jovian moon Ganymede was obtained by the
+          JunoCam imager aboard NASA's Juno spacecraft during the
+          mission's June 7, 2021, flyby of the icy moon on Juno's 34th
+          pass close to Jupiter.
+    `,
+    citeLink: {
+      href: 'https://images.nasa.gov/details/PIA25028',
+      title: 'NASA',
+    },
+  },
+]
+
+export const moonImages = [
+  {
+    id: 1,
+    src: 'https://images-assets.nasa.gov/image/PIA01546/PIA01546~orig.jpg',
+  },
+  {
+    id: 2,
+    src: 'https://images-assets.nasa.gov/image/PIA00407/PIA00407~small.jpg',
+  },
+  {
+    id: 3,
+    src: 'https://images-assets.nasa.gov/image/PIA13593/PIA13593~orig.jpg',
+  },
+  {
+    id: 4,
+    src: 'https://images-assets.nasa.gov/image/PIA08528/PIA08528~orig.jpg',
+  },
+  {
+    id: 5,
+    src: 'https://images-assets.nasa.gov/image/PIA05208/PIA05208~small.jpg',
+  },
+]

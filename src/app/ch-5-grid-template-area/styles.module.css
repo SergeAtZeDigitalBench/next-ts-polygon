@@ -1,0 +1,22 @@
+.gridContainer {
+  grid-template-areas:
+    'largeSquare boxA'
+    'largeSquare boxB'
+    'largeSquare boxC';
+}
+
+.largeSquare {
+  grid-area: largeSquare;
+}
+
+.boxA {
+  grid-area: boxA;
+}
+
+.boxB {
+  grid-area: boxB;
+}
+
+.boxC {
+  grid-area: boxC;
+}

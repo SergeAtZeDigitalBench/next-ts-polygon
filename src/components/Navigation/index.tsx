@@ -9,9 +9,13 @@ interface IProps {
 
 const Navigation = ({}: IProps): JSX.Element => {
   return (
-    <nav className="flex gap-2 justify-center py-4">
+    <nav className="flex flex-wrap gap-2 justify-center py-4">
       {navLinks.map(({ id, href, name }) => (
-        <Link key={id} href={href} className="px-4 py-2">
+        <Link
+          key={id}
+          href={href}
+          className="px-4 py-2 hover:underline focus:underline focus:text-pink-950"
+        >
           {name}
         </Link>
       ))}
