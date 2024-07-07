@@ -1,0 +1,13 @@
+@keyframes fadeIn {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.card {
+  animation: fadeIn 2s infinite alternate;
+}

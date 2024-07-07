@@ -172,3 +172,231 @@ export const moonImages = [
     src: 'https://images-assets.nasa.gov/image/PIA05208/PIA05208~small.jpg',
   },
 ]
+
+export const planets = [
+  {
+    id: 1,
+    image: {
+      src: 'https://assets.codepen.io/296057/fem-jupiter.jpg',
+      alt: 'Jupiter and its Galilean moons.',
+    },
+    caption: { title: 'Jupiter', text: 'Lorem ipsum dolor sit amet.' },
+  },
+  {
+    id: 2,
+    image: {
+      src: 'https://assets.codepen.io/296057/fem-saturn.jpg',
+      alt: 'Saturn and its moons.',
+    },
+    caption: {
+      title: 'Saturn and its moons.',
+      text: 'Lorem ipsum dolor sit amet.',
+    },
+  },
+  {
+    id: 3,
+    image: {
+      src: 'https://assets.codepen.io/296057/fem-neptune.jpg',
+      alt: "Triton, Neptune's main moon, in front of Neptune.",
+    },
+    caption: {
+      title: 'Triton and Neptune',
+      text: 'Lorem ipsum dolor sit amet.',
+    },
+  },
+  {
+    id: 4,
+    image: {
+      src: 'https://assets.codepen.io/296057/fem-pluto.jpg',
+      alt: 'Pluto and Charon.',
+    },
+    caption: { title: 'Pluto and Charon', text: 'Lorem ipsum dolor sit amet.' },
+  },
+]
+
+export const Earth = {
+  id: 5,
+  image: {
+    src: 'https://assets.codepen.io/296057/fem-earth2.jpg',
+    alt: 'Earth from orbit, with the moon crossing in between the camera and Earth.',
+  },
+  caption: {
+    title:
+      'Earth from orbit, with the moon crossing in between the camera and Earth.',
+    text: 'Earth from orbit, with the moon crossing in between the camera and Earth.',
+  },
+}
+
+export const cards = [
+  {
+    id: 1,
+    image: {
+      src: 'https://assets.codepen.io/296057/fem-venus.jpg',
+      alt: 'Graphic showing the relative sizes of Venus, Earth, Moon, and Mars. Earth and Venus are nearly the same size. Mars is roughly 1/2 the size of Earth, while the Moon is 1/4 the size of Earth',
+    },
+    caption: {
+      title: 'Venus, Earth, Moon, and Mars',
+      text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit esse fuga exercitationem veritatis error autem provident dolorem ipsum illum praesentium deleniti quidem distinctio sed odio, necessitatibus et facere. Iusto blanditiis nemo voluptatibus esse deleniti? Nisi, architecto hic aperiam, asperiores qui fugit possimus perspiciatis numquam cum, et dolor. Magni, dolore obcaecati.',
+    },
+    readMoreLink: {
+      href: '#',
+      name: 'Read more',
+    },
+  },
+  {
+    id: 2,
+    image: null,
+    caption: {
+      title: 'Lorem Ipsum Dolor',
+      text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae aliquid suscipit dolores explicabo animi numquam voluptatem officiis ad porro et.',
+    },
+    readMoreLink: {
+      href: '#',
+      name: 'Read more',
+    },
+  },
+  {
+    id: 3,
+    image: null,
+    caption: {
+      title: 'Lorem',
+      text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae aliquid suscipit dolores explicabo.',
+    },
+    readMoreLink: {
+      href: '#',
+      name: 'Read more',
+    },
+  },
+  {
+    id: 4,
+    image: null,
+    caption: {
+      title: 'Lorem Ipsum Dolor',
+      text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae aliquid suscipit dolores explicabo animi numquam voluptatem officiis ad porro et.',
+    },
+    readMoreLink: {
+      href: '#',
+      name: 'Read more',
+    },
+  },
+  {
+    id: 5,
+    image: null,
+    caption: {
+      title: 'Lorem',
+      text: 'Lorem ipsum dolor sit.',
+    },
+    readMoreLink: {
+      href: '#',
+      name: 'Read more',
+    },
+  },
+]
+
+export const solarSystemArticles = [
+  {
+    id: 1,
+    image: {
+      src: 'https://assets.codepen.io/296057/fem-new-system.jpg',
+      alt: 'Many of the planets in the solar system, plus a few moons.',
+    },
+    caption: {
+      title: 'Our Solar System',
+      text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, ad! Asperiores sed quae laudantium eveniet quis doloremque, ad veritatis ipsam?',
+    },
+    readMoreLink: {
+      href: 'https://images.nasa.gov/details/PIA03153',
+      name: 'Learn more at NASA',
+    },
+  },
+  {
+    id: 2,
+    image: {
+      src: 'https://assets.codepen.io/296057/fem-earth2.jpg',
+      alt: 'The dark side of the moon in front of the Earth as viewed from a spacecraft.',
+    },
+    caption: {
+      title: 'Earth and Moon',
+      text: null,
+    },
+    readMoreLink: {
+      href: 'https://images.nasa.gov/details/from-a-million-miles-away-nasa-camera-shows-moon-crossing-face-of-earth_20129140980_o',
+      name: 'Learn more at NASA',
+    },
+  },
+  {
+    id: 3,
+    image: {
+      src: 'https://assets.codepen.io/296057/fem-mars.jpg',
+      alt: 'Part of Mars with two tiny asteroid-looking moons.',
+    },
+    caption: {
+      title: 'Mars, Phobos, and Deimos',
+      text: null,
+    },
+    readMoreLink: {
+      href: 'https://images.nasa.gov/details/PIA17305',
+      name: 'Learn more at NASA',
+    },
+  },
+  {
+    id: 4,
+    image: {
+      src: 'https://assets.codepen.io/296057/fem-jupiter.jpg',
+      alt: 'Jupiter and its four Galilean moons.',
+    },
+    caption: {
+      title: 'Jupiter and Galilean Moons',
+      text: null,
+    },
+    readMoreLink: {
+      href: 'https://images.nasa.gov/details/PIA01481',
+      name: 'Learn more at NASA',
+    },
+  },
+  {
+    id: 5,
+    image: {
+      src: 'https://assets.codepen.io/296057/fem-saturn.jpg',
+      alt: 'Saturn and several of its moons.',
+    },
+    caption: {
+      title: 'Saturn and its moons',
+      text: null,
+    },
+    readMoreLink: {
+      href: 'https://images.nasa.gov/details/PIA01482',
+      name: 'Learn more at NASA',
+    },
+  },
+  {
+    id: 6,
+    image: {
+      src: 'https://assets.codepen.io/296057/fem-neptune.jpg',
+      alt: 'Triton, a gigantic moon, sits squarely in front of Neptune.',
+    },
+    caption: {
+      title: 'Neptune and Triton',
+      text: null,
+    },
+    readMoreLink: {
+      href: 'https://images.nasa.gov/details/PIA00340',
+      name: 'Learn more at NASA',
+    },
+  },
+  {
+    id: 7,
+    image: {
+      src: 'https://assets.codepen.io/296057/fem-pluto.jpg',
+      alt: 'Although Pluto is not technically a planet anymore, this photo of it with its moon Charon is pretty cool.',
+    },
+    caption: {
+      title: 'Pluto and Charon',
+      text: null,
+    },
+    readMoreLink: {
+      href: 'https://images.nasa.gov/details/PIA19966',
+      name: 'Learn more at NASA',
+    },
+  },
+]

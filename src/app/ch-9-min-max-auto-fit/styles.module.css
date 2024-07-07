@@ -1,0 +1,7 @@
+.autoFitCols {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.autoFillCols {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
