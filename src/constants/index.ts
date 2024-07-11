@@ -35,4 +35,14 @@ export const navLinks = [
     href: '/ch-9-subgrid-application',
     name: 'ch-9-subgrid-application',
   },
+  {
+    id: 13,
+    href: '/ch-10-responsive-img',
+    name: 'ch-10-responsive-img',
+  },
+  {
+    id: 14,
+    href: '/ch-11-container-queries',
+    name: 'ch-11-container-queries',
+  },
 ]
