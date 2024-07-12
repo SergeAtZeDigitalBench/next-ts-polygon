@@ -400,3 +400,88 @@ export const solarSystemArticles = [
     },
   },
 ]
+
+export const containerTerminology = [
+  { id: 1, code: 'cqw', description: "1% of a query container's width" },
+  { id: 2, code: 'cqh', description: "1% of a query container's height" },
+  { id: 3, code: 'cqi', description: "1% of a query container's inline size" },
+  { id: 4, code: 'cqb', description: "1% of a query container's block size" },
+  {
+    id: 5,
+    code: 'cqmin',
+    description: 'the smaller value of either cqi or cqb',
+  },
+  {
+    id: 6,
+    code: 'cqmax',
+    description: 'the larget value of either cqi or cqb',
+  },
+]
+
+export const containerArticles = [
+  {
+    id: 1,
+    img: {
+      src: 'https://assets.codepen.io/296057/fem-mimas-alone.jpg',
+      alt: 'Mimas, showing the giant Herschel crater. It looks similar to a Death Star.',
+    },
+    title: "That's No Moon. It's a Space Station.",
+    text: 'At 198km diameter, Mimas is bigger than the first Death Star (120km) but smaller than the second (800km).',
+    link: {
+      href: 'https://science.nasa.gov/saturn/moons/mimas/',
+      name: 'More about Mimas',
+    },
+  },
+  {
+    id: 2,
+    img: {
+      src: 'https://assets.codepen.io/296057/fem-titan-mosaic.jpg',
+      alt: 'A fuzzy looking world, with darker patches on a mostly light surface.',
+    },
+    title: "Titan's Ethane Lake",
+    text: "Titan is the only world besides Earth that has standing bodies of liquid, including rivers, lakes and seas, on its surface. Titan is bigger than Earth's moon, and larger than even the planet Mercury.",
+    link: {
+      href: 'https://science.nasa.gov/saturn/moons/titan/',
+      name: 'More about Titan',
+    },
+  },
+  {
+    id: 3,
+    img: {
+      src: 'https://assets.codepen.io/296057/fem-enceladus.jpg',
+      alt: 'Enceladus is a water world.',
+    },
+    title: 'Enceladus: Geyser World',
+    text: "Geysers venting from this ocean world add material to Saturn's E ring, and give clues that its subsurface saltwater ocean could be a possible habitat for life",
+    link: {
+      href: 'https://science.nasa.gov/saturn/moons/enceladus/',
+      name: 'More about Enceladus',
+    },
+  },
+  {
+    id: 4,
+    img: {
+      src: 'https://assets.codepen.io/296057/fem-iapetus.jpg',
+      alt: 'A white moon that looks like it has mold growing on one side of it.',
+    },
+    title: 'Iapetus: Yin and Yang',
+    text: 'Saturn has tidally locked Iapetus. The moon always presents the same face toward Saturn. With its distant, inclined orbit, Iapetus is the only large moon from which there is a nice view of the rings of Saturn.',
+    link: {
+      href: 'https://science.nasa.gov/saturn/moons/iapetus/',
+      name: 'More about Iapetus',
+    },
+  },
+  {
+    id: 5,
+    img: {
+      src: 'https://assets.codepen.io/296057/fem-phoebe.jpg',
+      alt: 'A moon with heavy cratering, making it look more like an asteroid.',
+    },
+    title: 'Phoebe: Source of the Proto-molecule',
+    text: "Unlike most major moons orbiting Saturn, Phoebe is very dark and reflects only 6 percent of the sunlight it receives. Its darkness and irregular, retrograde orbit suggest Phoebe is most likely a captured object. A captured object is a celestial body that is trapped by the gravitational pull of a much bigger body, generally a planet. Phoebe's darkness, in particular, suggests that the small moon comes from the outer solar system, an area where there is plenty of dark material.",
+    link: {
+      href: 'https://science.nasa.gov/saturn/moons/phoebe/',
+      name: 'More about Phoebe',
+    },
+  },
+]
