@@ -1,4 +1,78 @@
-## Frontend Masters Course
+## Drizzle / Sqlite:
+1. `yarn add drizzle-orm better-sqlite3 && yarn add -D drizzle-kit @types/better-sqlite3`
+2. drizzle.config.ts
+```ts
+import type { Config } from 'drizzle-kit'
+
+export default {
+  dialect: 'sqlite',
+  schema: './src/lib/db/schema.ts',
+  out: './src/lib/db/migrations',
+  dbCredentials: {
+    url: './sqlite.db',
+  },
+} satisfies Config
+```
+3. ./src/lib/db/schema.ts
+```ts
+import { sqliteTable, integer, text } from 'drizzle-orm/sqlite-core'
+
+export const users = sqliteTable('users', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  username: text('username').unique().notNull(),
+  email: text('email').unique().notNull(),
+})
+```
+4. src/lib/db/index.ts
+```ts
+import { drizzle, type BetterSQLite3Database } from 'drizzle-orm/better-sqlite3'
+import Database from 'better-sqlite3'
+
+import * as schema from './schema'
+
+const sqlite = new Database('sqlite.db')
+
+export const db: BetterSQLite3Database<typeof schema> = drizzle(sqlite, {
+  schema,
+})
+```
+5. package.json
+```json
+{
+  "scripts": {
+    "generate": "drizzle-kit generate",
+    "migrate": "drizzle-kit migrate",
+    "studio": "drizzle-kit studio"
+  }
+}
+```
+
+6. update `tscongig.json`
+```json
+{
+  "compilerOptions": {
+    "target": "ESNext",
+  }
+}
+```
+or, alternatively you will need to use `var` instead of `const` in your schema definition: `src/lib/db/schema.ts`
+
+7. run scripts to generate and migrate
+```sh
+$ yarn generate
+
+$ yarn migrate
+```
+
+8. IN order to run the Drizzle-Kit Studio, you'll need to have `mkcert` installed to authorise the browser running this studio app. So first:
+- `brew install mkcert`
+then:
+- `mkcert -install`
+
+9. After that you can run Drizzle-Kit Studio in your browser:
+```sh
+$ yarn studio
+```
 
 ### Intro to Next.js V3
 
