@@ -10,15 +10,19 @@
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,mjs,cjs,json}'"
   },
   "dependencies": {
+    "better-sqlite3": "^11.1.2",
+    "drizzle-orm": "^0.32.0",
     "next": "^14.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.11",
     "@types/node": "18.11.15",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
     "autoprefixer": "^10.4.13",
+    "drizzle-kit": "^0.23.0",
     "eslint": "8.29.0",
     "eslint-config-next": "^14.2.1",
     "postcss": "^8.4.20",
