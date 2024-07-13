@@ -64,7 +64,7 @@ $ yarn generate
 $ yarn migrate
 ```
 
-8. IN order to run the Drizzle-Kit Studio, you'll need to have `mkcert` installed to authorise the browser running this studio app. So first:
+8. IN order to run the Drizzle-Kit Studio, you'll need to have `mkcert` installed to authorise the browser running this studio app. [see this post](https://github.com/drizzle-team/drizzle-kit-mirror/issues/185) So first:
 - `brew install mkcert`
 then:
 - `mkcert -install`
