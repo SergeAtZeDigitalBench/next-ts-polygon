@@ -1,5 +1,5 @@
 import { sqliteTable, integer, text } from 'drizzle-orm/sqlite-core'
-import { sql } from 'drizzle-orm'
+import { sql, relations } from 'drizzle-orm'
 import { randomUUID } from 'crypto'
 
 export const users = sqliteTable('users', {
@@ -30,4 +30,19 @@ export const posts = sqliteTable('posts', {
   userId: text('userId')
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
+})
+
+export const userRelations = relations(users, ({ many }) => {
+  return {
+    posts: many(posts),
+  }
+})
+
+export const postRelations = relations(posts, ({ one }) => {
+  return {
+    user: one(users, {
+      fields: [posts.userId],
+      references: [users.id],
+    }),
+  }
 })
