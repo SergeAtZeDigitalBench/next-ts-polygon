@@ -1,8 +1,13 @@
-import Navigation from '@/components/Navigation'
+import { Inter } from 'next/font/google'
+import { cn } from '@nextui-org/react'
+
+import NextUIProvider from '@/providers/NextUIProvider'
 import './globals.css'
 
+const inter = Inter({ subsets: ['latin'] })
+
 export const metadata = {
-  title: 'NextJS v.14 Code Polygon',
+  title: 'NextJS v.14 Frontend Masters Course',
   description: 'Code polygon for latest Next.js v.14, features and patterns',
 }
 
@@ -13,16 +18,11 @@ type Props = {
 export default function RootLayout({ children }: Props) {
   return (
     <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
       <head />
-      <body>
-        <header>
-          <Navigation />
-        </header>
-        <main className="max-w-screen-xl mx-auto">{children}</main>
+      <body
+        className={`${inter.className} dark text-foreground bg-background h-screen w-screen`}
+      >
+        <NextUIProvider>{children}</NextUIProvider>
       </body>
     </html>
   )
