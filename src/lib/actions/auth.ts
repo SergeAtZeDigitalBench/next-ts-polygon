@@ -38,5 +38,11 @@ export const registerUser = async (
     const { email, password } = validation.data
     const { token } = await signup({ email, password })
     cookies().set(COOKIE_NAME, token)
-  } catch (error) {}
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Failed to sign up'
+
+    return { message }
+  }
+
+  redirect('/dashboard')
 }
