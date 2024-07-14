@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "6",
-      "when": 1720899258670,
-      "tag": "0000_concerned_hex",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1720900351051,
-      "tag": "0001_slippery_hobgoblin",
+      "when": 1720955048155,
+      "tag": "0000_special_blackheart",
       "breakpoints": true
     }
   ]
