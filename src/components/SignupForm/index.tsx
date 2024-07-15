@@ -10,6 +10,7 @@ import SubmitButton from '@/components/SubmitButton'
 const initState: { message: null | string } = {
   message: null,
 }
+
 const SignupForm = () => {
   const [formState, action] = useFormState(registerUser, initState)
 
@@ -33,6 +34,11 @@ const SignupForm = () => {
       <div>
         <Link href="/signin">{`Already have an account?`}</Link>
       </div>
+      {formState.message && (
+        <p className="my-2 font-semibold text-center text-red-600">
+          {formState.message}
+        </p>
+      )}
     </form>
   )
 }

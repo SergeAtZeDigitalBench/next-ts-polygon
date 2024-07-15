@@ -46,3 +46,35 @@ export const registerUser = async (
 
   redirect('/dashboard')
 }
+
+export const signInUser = async (
+  prevState: Record<string, any>,
+  formData: FormData
+) => {
+  try {
+    const validation = authSchema.safeParse({
+      email: formData.get('email'),
+      password: formData.get('password'),
+    })
+    if (validation.error) {
+      const { fieldErrors, formErrors } = validation.error.flatten()
+      const { email, password } = fieldErrors
+      const allErrors =
+        email?.join(', ') ||
+        '' + password?.join(', ') ||
+        '' + formErrors.join(', ')
+
+      throw new Error(allErrors || 'Form invalid')
+    }
+
+    const { email, password } = validation.data
+    const { token } = await signin({ email, password })
+    cookies().set(COOKIE_NAME, token)
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Failed to sign in'
+
+    return { message }
+  }
+
+  redirect('/dashboard')
+}
