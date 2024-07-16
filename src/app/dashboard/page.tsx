@@ -6,12 +6,14 @@ const DashboardPage = async () => {
   const attendeesCount = await getAttendeesCountForDashboard(user.id)
 
   return (
-    <>
-      <h1 className="text-3xl font-bold underline text-center">
-        Dashboard Home
-      </h1>
-      <p className="my-2 text-center">Total attendees: {attendeesCount}</p>
-    </>
+    <div className="w-full flex h-full justify-center items-center">
+      <div>
+        <h4 className="text-lg">Attendees</h4>
+        <h2 className="text-6xl font-semibold my-8 text-center">
+          {attendeesCount}
+        </h2>
+      </div>
+    </div>
   )
 }
 

@@ -1,6 +1,6 @@
 import 'server-only'
 
-import { and, desc, eq, inArray } from 'drizzle-orm'
+import { desc, eq, inArray } from 'drizzle-orm'
 import { memoize } from 'nextjs-better-unstable-cache'
 
 import { db, rsvps, events, attendees } from '@/lib/db'

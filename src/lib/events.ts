@@ -1,9 +1,9 @@
 import 'server-only'
 
-import { and, asc, count, desc, eq, ne, not } from 'drizzle-orm'
+import { and, asc, eq } from 'drizzle-orm'
 import { memoize } from 'nextjs-better-unstable-cache'
 
-import { db, events, rsvps } from '@/lib/db'
+import { db, events } from '@/lib/db'
 import { delay } from './common'
 
 export const getEventsForDashboard = memoize(
@@ -39,6 +39,7 @@ export const getEventsForDashboard = memoize(
 export const getAllEvents = memoize(
   async (userId: string) => {
     await delay()
+
     return db.query.events.findMany({
       where: eq(events.createdById, userId),
       orderBy: [asc(events.startOn)],
@@ -55,6 +56,7 @@ export const getAllEvents = memoize(
 export const getOneEvent = memoize(
   async (userId: string, eventId: string) => {
     await delay()
+
     return db.query.events.findFirst({
       where: and(eq(events.createdById, userId), eq(events.id, eventId)),
     })
