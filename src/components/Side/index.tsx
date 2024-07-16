@@ -2,7 +2,8 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { Button } from '@nextui-org/react'
+import { usePathname } from 'next/navigation'
+import { Button, cn } from '@nextui-org/react'
 
 import Logo from '@/images/pardy.png'
 
@@ -14,7 +15,16 @@ const links = [
   { route: '/dashboard/settings', name: 'Settings' },
 ]
 
+const isActive = (pathname: string, route: string) => {
+  if (route === '/dashboard') {
+    return pathname === '/dashboard'
+  }
+
+  return pathname.includes(route)
+}
+
 const Side = () => {
+  const pathname = usePathname()
   const activeClass = 'bg-primary hover:bg-primary'
 
   return (
@@ -26,10 +36,13 @@ const Side = () => {
       </div>
       <div>
         {links.map((link) => (
-          <div className="w-full" key={link.route}>
+          <div className="w-full my-2" key={link.route}>
             <Link href={link.route}>
               <div
-                className={`w-full h-full py-2 px-2 hover:bg-content1 rounded-lg `}
+                className={cn(
+                  `w-full h-full py-2 px-2 hover:bg-content1 rounded-lg`,
+                  isActive(pathname, link.route) && activeClass
+                )}
               >
                 {link.name}
               </div>
