@@ -1,6 +1,6 @@
-import { IPageProps } from '@/types'
+import { PageProps } from '@/types'
 
-const Homepage = async ({ params, searchParams }: IPageProps) => {
+const Homepage = async ({ params, searchParams }: PageProps) => {
   return (
     <>
       <h1 className="text-3xl font-bold underline text-center">
