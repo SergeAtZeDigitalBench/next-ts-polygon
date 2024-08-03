@@ -1,4 +1,6 @@
-## Frontend Masters Course
+## Youtube video:
+
+https://www.youtube.com/watch?v=tm70Xa6igbY
 
 ### Intro to Next.js V3
 
