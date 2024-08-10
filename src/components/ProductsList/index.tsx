@@ -5,9 +5,7 @@ import React from 'react'
 import { useProducts } from '@/lib/hooks/useProducts'
 import ProductCard from './ProductCard'
 
-interface IProps {}
-
-const ProductsList = ({}: IProps): JSX.Element => {
+const ProductsList = (): JSX.Element => {
   const { products, isLoading, fetchNextPage } = useProducts({ limit: 6 })
 
   const renderedProducts = products.map((product) => {

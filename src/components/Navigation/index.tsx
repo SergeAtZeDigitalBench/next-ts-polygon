@@ -1,13 +1,8 @@
-import React from 'react'
 import Link from 'next/link'
 
 import { navLinks } from '@/constants'
 
-interface IProps {
-  [x: string]: unknown
-}
-
-const Navigation = ({}: IProps): JSX.Element => {
+const Navigation = (): JSX.Element => {
   return (
     <nav className="flex gap-2 justify-center py-4">
       {navLinks.map(({ id, href, name }) => (
