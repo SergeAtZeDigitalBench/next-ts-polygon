@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 import Users from '@/components/Users'
@@ -31,16 +31,18 @@ describe('Users', () => {
     const nameInput = screen.getByRole('textbox', { name: /enter name/i })
     const emailInput = screen.getByRole('textbox', { name: /enter email/i })
 
-    await userEvent.click(nameInput)
-    await userEvent.keyboard(mockUser.name)
-    await userEvent.click(emailInput)
-    await userEvent.keyboard(mockUser.email)
-    await userEvent.keyboard('{Enter}')
+    await act(async () => {
+      await userEvent.click(nameInput)
+      await userEvent.keyboard(mockUser.name)
+      await userEvent.click(emailInput)
+      await userEvent.keyboard(mockUser.email)
+      await userEvent.keyboard('{Enter}')
+    })
 
     const newUserName = screen.getByRole('cell', {
       name: mockUser.name,
     })
-    const newUserEmail = await screen.getByRole('cell', {
+    const newUserEmail = screen.getByRole('cell', {
       name: mockUser.email,
     })
 

@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import ProductsList from '@/components/ProductsList'
 
@@ -32,7 +32,10 @@ describe('ProductsList', () => {
       name: /load more/i,
     })
 
-    await userEvent.click(button)
+    await act(async () => {
+      await userEvent.click(button)
+    })
+
     await waitFor(async () => {
       const products = await screen.findAllByTestId('ProductCard')
       expect(products).toHaveLength(12)

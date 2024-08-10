@@ -1,10 +1,11 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, act } from '@testing-library/react'
+import { vi } from 'vitest'
 import userEvent from '@testing-library/user-event'
 
 import UserForm from '@/components/UserForm'
 
 describe('UserForm', () => {
-  let onUserAdd = jest.fn()
+  let onUserAdd = vi.fn()
   const mockProps = { onUserAdd }
   const mockUser = {
     name: 'John Doe',
@@ -39,12 +40,14 @@ describe('UserForm', () => {
       name: /add user/i,
     })
 
-    await userEvent.click(submitButton)
+    await act(async () => {
+      await userEvent.click(submitButton)
+    })
 
     expect(onUserAdd).toHaveBeenCalledTimes(0)
   })
 
-  it('should call the `onUserAdd` callback on submitif the fields values are valid', async () => {
+  it('should call the `onUserAdd` callback on submit if the fields values are valid', async () => {
     render(<UserForm {...mockProps} />)
     const submitButton = screen.getByRole('button', {
       name: /add user/i,
@@ -54,13 +57,13 @@ describe('UserForm', () => {
     const nameInput = screen.getByRole('textbox', { name: /enter name/i })
     const emailInput = screen.getByRole('textbox', { name: /enter email/i })
 
-    await userEvent.click(nameInput)
-    await userEvent.keyboard(mockUser.name)
-
-    await userEvent.click(emailInput)
-    await userEvent.keyboard(mockUser.email)
-
-    await userEvent.click(submitButton)
+    await act(async () => {
+      await userEvent.click(nameInput)
+      await userEvent.keyboard(mockUser.name)
+      await userEvent.click(emailInput)
+      await userEvent.keyboard(mockUser.email)
+      await userEvent.click(submitButton)
+    })
 
     expect(onUserAdd).toHaveBeenCalledTimes(1)
     expect(onUserAdd).toHaveBeenCalledWith(mockUser)
@@ -72,11 +75,15 @@ describe('UserForm', () => {
     // Also can get by: const nameInput = screen.getByLabelText(/enter name/i)
     const nameInput = screen.getByRole('textbox', { name: /enter name/i })
     const emailInput = screen.getByRole('textbox', { name: /enter email/i })
-    await userEvent.click(nameInput)
-    await userEvent.keyboard(mockUser.name)
-    await userEvent.click(emailInput)
-    await userEvent.keyboard(mockUser.email)
-    await userEvent.keyboard('{Enter}')
+
+    await act(async () => {
+      await userEvent.click(nameInput)
+      await userEvent.keyboard(mockUser.name)
+      await userEvent.click(emailInput)
+      await userEvent.keyboard(mockUser.email)
+      await userEvent.keyboard('{Enter}')
+    })
+
     const nameInputAfterSubmit = screen.getByRole('textbox', {
       name: /enter name/i,
     })

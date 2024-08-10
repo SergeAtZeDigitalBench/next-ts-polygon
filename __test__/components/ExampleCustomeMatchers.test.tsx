@@ -32,15 +32,6 @@ function toContainRole(container: HTMLElement, role: string, quantity = 1) {
       `Expected to find ${quantity} ${role} elements. Found ${elements.length} instead.`,
   }
 }
-/**
- * create file `jest.d.ts`, then add extension below:
- * 
-   declare namespace jest {
-     interface Matchers<R> {
-        toContainRole(role: string, quantity?: number): CustomMatcherResult
-     }
-   }
- */
 
 expect.extend({ toContainRole })
 
